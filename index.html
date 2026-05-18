@@ -710,7 +710,7 @@
         <!-- Formulario -->
         <form
           id="contact-form"
-          action="https://formspree.io/f/mbdbrwra"
+          action="https://hook.eu2.make.com/j00ekoh514euil8ewqspnq3c4g5hcjth"
           method="POST"
           class="md:col-span-7 space-y-8"
         >
@@ -817,28 +817,38 @@
       });
     });
 
-    // Formulario Formspree con feedback inline
+    // Formulario → Make webhook (auto-respuesta + IA + Notion + borrador)
     const form = document.getElementById('contact-form');
     const status = document.getElementById('form-status');
     if (form) {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const data = new FormData(form);
+        // Honeypot: si está relleno, es bot — fingimos éxito y descartamos
+        if (form._gotcha && form._gotcha.value) {
+          form.reset();
+          status.textContent = '¡Recibido! Te contesto en menos de 24 h.';
+          status.style.color = '#9BD9A3';
+          return;
+        }
+        const payload = {
+          name: form.name.value,
+          email: form.email.value,
+          message: form.message.value
+        };
         status.textContent = 'Enviando…';
         status.style.color = '';
         try {
           const res = await fetch(form.action, {
             method: 'POST',
-            body: data,
-            headers: { 'Accept': 'application/json' }
+            body: JSON.stringify(payload),
+            headers: { 'Content-Type': 'application/json' }
           });
           if (res.ok) {
             form.reset();
             status.textContent = '¡Recibido! Te contesto en menos de 24 h.';
             status.style.color = '#9BD9A3';
           } else {
-            const json = await res.json().catch(() => ({}));
-            status.textContent = json.errors?.[0]?.message || 'Algo no ha ido bien. Prueba con email directo.';
+            status.textContent = 'Algo no ha ido bien. Prueba con email directo.';
             status.style.color = '#FFB199';
           }
         } catch {

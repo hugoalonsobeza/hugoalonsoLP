@@ -610,7 +610,7 @@
 
         <form
           id="contact-form"
-          action="https://formspree.io/f/mbdbrwra"
+          action="https://hook.eu2.make.com/j00ekoh514euil8ewqspnq3c4g5hcjth"
           method="POST"
           class="md:col-span-7 space-y-8"
         >
@@ -709,21 +709,31 @@
     if (form) {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const data = new FormData(form);
+        if (form._gotcha && form._gotcha.value) {
+          form.reset();
+          status.textContent = 'Got it! I\'ll reply within 24 h.';
+          status.style.color = '#9BD9A3';
+          return;
+        }
+        const payload = {
+          name: form.name.value,
+          email: form.email.value,
+          message: form.message.value
+        };
         status.textContent = 'Sending…';
         status.style.color = '';
         try {
           const res = await fetch(form.action, {
-            method: 'POST', body: data,
-            headers: { 'Accept': 'application/json' }
+            method: 'POST',
+            body: JSON.stringify(payload),
+            headers: { 'Content-Type': 'application/json' }
           });
           if (res.ok) {
             form.reset();
             status.textContent = 'Got it! I\'ll reply within 24 h.';
             status.style.color = '#9BD9A3';
           } else {
-            const json = await res.json().catch(() => ({}));
-            status.textContent = json.errors?.[0]?.message || 'Something went wrong. Try direct email.';
+            status.textContent = 'Something went wrong. Try direct email.';
             status.style.color = '#FFB199';
           }
         } catch {

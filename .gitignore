@@ -1,0 +1,29 @@
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+
+# Editores
+.vscode/
+.idea/
+*.sublime-*
+
+# Logs y temporales
+*.log
+*.tmp
+.cache/
+
+# Dependencias (por si en el futuro añades npm)
+node_modules/
+package-lock.json
+
+# Variables de entorno
+.env
+.env.local
+.env.*.local
+
+# Deploy
+.vercel
+.netlify

@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Norte Studio — Brand · Web · Producto</title>
+  <meta name="description" content="Estudio de diseño independiente. Construimos identidades y productos digitales para marcas con algo que decir." />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+            mono: ['"Space Mono"', 'monospace'],
+            serif: ['"Instrument Serif"', 'serif'],
+          },
+          colors: {
+            paper: '#FFFFFF',
+            ink: '#0B0B0B',
+            mute: '#737373',
+            line: '#E5E5E5',
+            accent: '#FF3D00',
+          },
+          letterSpacing: {
+            tightest: '-0.05em',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #FFFFFF; color: #0B0B0B; font-family: 'Space Grotesk', sans-serif; -webkit-font-smoothing: antialiased; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 1s cubic-bezier(.22,.61,.36,1), transform 1s cubic-bezier(.22,.61,.36,1); }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: .1s; } .delay-2 { transition-delay: .2s; } .delay-3 { transition-delay: .3s; }
+
+    .link { position: relative; }
+    .link::after { content:''; position: absolute; left: 0; bottom: -2px; width: 100%; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .5s cubic-bezier(.22,.61,.36,1); }
+    .link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+    /* Marquee horizontal */
+    @keyframes scrollX { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee { display: flex; width: max-content; animation: scrollX 30s linear infinite; }
+
+    /* Caso */
+    .case {
+      position: relative;
+      overflow: hidden;
+    }
+    .case .cover { transition: transform .8s cubic-bezier(.22,.61,.36,1); }
+    .case:hover .cover { transform: scale(1.04); }
+
+    /* Cover fakes */
+    .cover-1 { background: linear-gradient(135deg, #FF3D00 0%, #FFB300 100%); }
+    .cover-2 { background: #0B0B0B; }
+    .cover-3 { background: linear-gradient(180deg, #E5E5E5 0%, #0B0B0B 100%); }
+    .cover-4 { background: linear-gradient(45deg, #FFFFFF 0%, #FF3D00 50%, #0B0B0B 100%); }
+
+    ::selection { background: #FF3D00; color: #FFFFFF; }
+  </style>
+</head>
+
+<body class="overflow-x-hidden">
+
+  <!-- Banner concept -->
+  <div class="bg-ink text-paper text-xs py-2.5 px-6 text-center relative z-50 font-mono">
+    <span class="opacity-60">Concept site —</span>
+    <a href="../" class="link font-bold ml-1">Diseñado y desarrollado por Hugo Alonso ↗</a>
+  </div>
+
+  <!-- Ticker arriba del nav -->
+  <div class="bg-accent text-paper border-b border-ink overflow-hidden py-2">
+    <div class="marquee whitespace-nowrap font-mono text-xs uppercase tracking-widest">
+      <span class="px-6">★ Q3/2026 · 2 plazas abiertas</span><span class="px-6">★ Aceptando proyectos &gt; 4.000 €</span><span class="px-6">★ Branding · Web · Producto</span><span class="px-6">★ Estudio independiente — Donostia</span>
+      <span class="px-6">★ Q3/2026 · 2 plazas abiertas</span><span class="px-6">★ Aceptando proyectos &gt; 4.000 €</span><span class="px-6">★ Branding · Web · Producto</span><span class="px-6">★ Estudio independiente — Donostia</span>
+    </div>
+  </div>
+
+  <!-- Nav -->
+  <header class="sticky top-0 z-40 bg-paper border-b border-line">
+    <nav class="max-w-[1600px] mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
+      <a href="#top" class="font-bold text-xl tracking-tightest">
+        NORTE<span class="text-accent">/</span>studio
+      </a>
+      <ul class="hidden md:flex items-center gap-10 text-sm font-mono uppercase">
+        <li><a href="#trabajos" class="link">Trabajos</a></li>
+        <li><a href="#manifiesto" class="link">Manifiesto</a></li>
+        <li><a href="#capacidades" class="link">Capacidades</a></li>
+        <li><a href="#contacto" class="link">Contacto</a></li>
+      </ul>
+      <a href="#contacto" class="inline-flex items-center gap-2 text-sm font-mono uppercase font-bold border-b-2 border-ink hover:border-accent hover:text-accent transition-colors">
+        Hablemos →
+      </a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" class="px-6 md:px-10 pt-20 md:pt-32 pb-20 md:pb-32 border-b border-ink">
+    <div class="max-w-[1600px] mx-auto">
+
+      <p class="font-mono text-xs uppercase tracking-widest text-mute mb-12 reveal">
+        / Brand &amp; Digital Studio · Donostia · est. 2024
+      </p>
+
+      <h1 class="reveal delay-1 font-bold tracking-tightest leading-[0.85] text-[clamp(4rem,16vw,18rem)]">
+        Marcas<br/>
+        con algo<br/>
+        <span class="italic font-serif font-normal text-accent">que decir.</span>
+      </h1>
+
+      <div class="reveal delay-2 mt-16 grid md:grid-cols-12 gap-8 items-end">
+        <p class="md:col-span-7 text-xl md:text-2xl leading-snug max-w-2xl">
+          Construimos identidades, webs y productos digitales para empresas que no se conforman con plantillas. Trabajo independiente, equipos pequeños, resultados grandes.
+        </p>
+        <div class="md:col-span-4 md:col-start-9 font-mono text-sm space-y-1">
+          <p class="text-mute">Disponibles desde</p>
+          <p class="text-2xl font-bold">Q3 · 2026</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <section class="py-10 border-b border-ink overflow-hidden">
+    <div class="marquee whitespace-nowrap font-bold tracking-tightest text-[clamp(3rem,8vw,7rem)] leading-none">
+      <span class="px-8">BRAND&nbsp;<span class="italic font-serif font-normal text-accent">/</span>&nbsp;WEB&nbsp;<span class="italic font-serif font-normal text-accent">/</span>&nbsp;PRODUCTO&nbsp;<span class="italic font-serif font-normal text-accent">/</span>&nbsp;</span>
+      <span class="px-8">BRAND&nbsp;<span class="italic font-serif font-normal text-accent">/</span>&nbsp;WEB&nbsp;<span class="italic font-serif font-normal text-accent">/</span>&nbsp;PRODUCTO&nbsp;<span class="italic font-serif font-normal text-accent">/</span>&nbsp;</span>
+    </div>
+  </section>
+
+  <!-- TRABAJOS -->
+  <section id="trabajos" class="px-6 md:px-10 py-24 md:py-32 border-b border-ink">
+    <div class="max-w-[1600px] mx-auto">
+
+      <div class="grid md:grid-cols-12 gap-10 mb-16">
+        <div class="md:col-span-6 reveal">
+          <p class="font-mono text-xs uppercase tracking-widest text-mute mb-6">/ Selected Work</p>
+          <h2 class="font-bold tracking-tightest leading-[0.9] text-5xl md:text-7xl">
+            04 proyectos.<br/>
+            <span class="italic font-serif font-normal">Cero igual al anterior.</span>
+          </h2>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+
+        <!-- Caso 01 -->
+        <a href="#contacto" class="case group block reveal">
+          <div class="relative aspect-[4/3] cover cover-1 overflow-hidden">
+            <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-between">
+              <p class="font-mono text-xs uppercase tracking-widest text-paper/70">/ 2026 · Branding</p>
+              <p class="font-bold text-paper text-5xl md:text-6xl tracking-tightest leading-none">
+                Olatua<br/>
+                <span class="italic font-serif font-normal">Surfboards</span>
+              </p>
+            </div>
+          </div>
+          <div class="mt-6 flex justify-between items-start gap-4">
+            <div>
+              <h3 class="text-2xl font-bold">Olatua Surfboards</h3>
+              <p class="text-mute mt-1">Identidad + e-commerce de tablas artesanales</p>
+            </div>
+            <span class="text-2xl">↗</span>
+          </div>
+        </a>
+
+        <!-- Caso 02 -->
+        <a href="#contacto" class="case group block reveal delay-1 md:mt-20">
+          <div class="relative aspect-[4/3] cover cover-2 overflow-hidden">
+            <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-between">
+              <p class="font-mono text-xs uppercase tracking-widest text-paper/60">/ 2026 · Producto digital</p>
+              <p class="font-bold text-paper text-5xl md:text-6xl tracking-tightest leading-none">
+                <span class="text-accent">●</span> Mareo<br/>
+                <span class="italic font-serif font-normal text-paper/80">app</span>
+              </p>
+            </div>
+          </div>
+          <div class="mt-6 flex justify-between items-start gap-4">
+            <div>
+              <h3 class="text-2xl font-bold">Mareo App</h3>
+              <p class="text-mute mt-1">Diseño UX de app de previsión costera</p>
+            </div>
+            <span class="text-2xl">↗</span>
+          </div>
+        </a>
+
+        <!-- Caso 03 -->
+        <a href="#contacto" class="case group block reveal delay-2">
+          <div class="relative aspect-[4/3] cover cover-3 overflow-hidden">
+            <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-between">
+              <p class="font-mono text-xs uppercase tracking-widest text-ink/70">/ 2025 · Web</p>
+              <p class="font-bold text-ink text-5xl md:text-6xl tracking-tightest leading-none">
+                Bidean<br/>
+                <span class="italic font-serif font-normal">Arquitectos</span>
+              </p>
+            </div>
+          </div>
+          <div class="mt-6 flex justify-between items-start gap-4">
+            <div>
+              <h3 class="text-2xl font-bold">Bidean Arquitectos</h3>
+              <p class="text-mute mt-1">Web portfolio para estudio de arquitectura</p>
+            </div>
+            <span class="text-2xl">↗</span>
+          </div>
+        </a>
+
+        <!-- Caso 04 -->
+        <a href="#contacto" class="case group block reveal delay-3 md:mt-20">
+          <div class="relative aspect-[4/3] cover cover-4 overflow-hidden">
+            <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-between">
+              <p class="font-mono text-xs uppercase tracking-widest text-ink/70">/ 2025 · Identidad</p>
+              <p class="font-bold text-ink text-5xl md:text-6xl tracking-tightest leading-none">
+                Hago<br/>
+                <span class="italic font-serif font-normal">/wine</span>
+              </p>
+            </div>
+          </div>
+          <div class="mt-6 flex justify-between items-start gap-4">
+            <div>
+              <h3 class="text-2xl font-bold">Hago Wine</h3>
+              <p class="text-mute mt-1">Identidad para bodega txakolinera independiente</p>
+            </div>
+            <span class="text-2xl">↗</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFIESTO -->
+  <section id="manifiesto" class="px-6 md:px-10 py-24 md:py-40 bg-ink text-paper border-b border-ink">
+    <div class="max-w-[1600px] mx-auto">
+
+      <p class="font-mono text-xs uppercase tracking-widest text-paper/50 mb-12 reveal">/ Manifiesto</p>
+
+      <div class="grid md:grid-cols-12 gap-10">
+
+        <h2 class="md:col-span-8 reveal delay-1 font-bold tracking-tightest leading-[0.95] text-4xl md:text-6xl lg:text-7xl">
+          No diseñamos para impresionar a otros diseñadores.<br/>
+          <span class="text-accent italic font-serif font-normal">Diseñamos para resolver.</span>
+        </h2>
+
+        <div class="md:col-span-10 grid md:grid-cols-3 gap-10 mt-20 reveal delay-2">
+          <div class="border-t border-paper/20 pt-6">
+            <p class="font-mono text-xs text-paper/40 mb-3">/ 01</p>
+            <h3 class="text-xl font-bold mb-3">Pocos proyectos</h3>
+            <p class="text-paper/70 leading-relaxed">Trabajamos con 4-6 clientes al año. La calidad la garantiza la atención, no el catálogo.</p>
+          </div>
+          <div class="border-t border-paper/20 pt-6">
+            <p class="font-mono text-xs text-paper/40 mb-3">/ 02</p>
+            <h3 class="text-xl font-bold mb-3">Diseño honesto</h3>
+            <p class="text-paper/70 leading-relaxed">Sin tendencias prestadas. La forma viene del problema, no de Pinterest.</p>
+          </div>
+          <div class="border-t border-paper/20 pt-6">
+            <p class="font-mono text-xs text-paper/40 mb-3">/ 03</p>
+            <h3 class="text-xl font-bold mb-3">Equipo pequeño</h3>
+            <p class="text-paper/70 leading-relaxed">Hablas con quien diseña. Sin capas de cuentas, ni traductores, ni reuniones inútiles.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" class="px-6 md:px-10 py-24 md:py-32 bg-paper border-b border-ink">
+    <div class="max-w-[1600px] mx-auto">
+
+      <div class="grid md:grid-cols-12 gap-10 mb-20">
+        <div class="md:col-span-7 reveal">
+          <p class="font-mono text-xs uppercase tracking-widest text-mute mb-6">/ Cómo trabajamos</p>
+          <h2 class="font-bold tracking-tightest leading-[0.9] text-5xl md:text-7xl">
+            Cuatro fases.<br/>
+            <span class="italic font-serif font-normal text-accent">Cero misterio.</span>
+          </h2>
+        </div>
+      </div>
+
+      <div class="space-y-px bg-ink border border-ink">
+
+        <div class="grid md:grid-cols-12 gap-6 p-6 md:p-10 bg-paper hover:bg-accent hover:text-paper transition-colors duration-500 group">
+          <p class="md:col-span-1 font-mono font-bold text-3xl md:text-5xl">/01</p>
+          <h3 class="md:col-span-3 text-2xl md:text-3xl font-bold tracking-tightest">Brief &amp; encaje</h3>
+          <p class="md:col-span-6 text-mute group-hover:text-paper/80 transition-colors max-w-2xl">Una llamada de 45 min. Te escuchamos, te enseñamos referencias, te decimos si encajamos. Sin coste, sin compromiso.</p>
+          <p class="md:col-span-2 md:text-right font-mono text-sm text-mute group-hover:text-paper/70 transition-colors">Semana 0</p>
+        </div>
+
+        <div class="grid md:grid-cols-12 gap-6 p-6 md:p-10 bg-paper hover:bg-accent hover:text-paper transition-colors duration-500 group">
+          <p class="md:col-span-1 font-mono font-bold text-3xl md:text-5xl">/02</p>
+          <h3 class="md:col-span-3 text-2xl md:text-3xl font-bold tracking-tightest">Estrategia &amp; concepto</h3>
+          <p class="md:col-span-6 text-mute group-hover:text-paper/80 transition-colors max-w-2xl">Investigación, posicionamiento y dirección visual. Te presentamos 2 caminos — eliges uno y construimos sobre él.</p>
+          <p class="md:col-span-2 md:text-right font-mono text-sm text-mute group-hover:text-paper/70 transition-colors">Semana 1-3</p>
+        </div>
+
+        <div class="grid md:grid-cols-12 gap-6 p-6 md:p-10 bg-paper hover:bg-accent hover:text-paper transition-colors duration-500 group">
+          <p class="md:col-span-1 font-mono font-bold text-3xl md:text-5xl">/03</p>
+          <h3 class="md:col-span-3 text-2xl md:text-3xl font-bold tracking-tightest">Diseño &amp; desarrollo</h3>
+          <p class="md:col-span-6 text-mute group-hover:text-paper/80 transition-colors max-w-2xl">Iteramos en abierto. Acceso a Figma desde día uno. Revisiones semanales, decisiones rápidas, sin sorpresas.</p>
+          <p class="md:col-span-2 md:text-right font-mono text-sm text-mute group-hover:text-paper/70 transition-colors">Semana 3-8</p>
+        </div>
+
+        <div class="grid md:grid-cols-12 gap-6 p-6 md:p-10 bg-paper hover:bg-accent hover:text-paper transition-colors duration-500 group">
+          <p class="md:col-span-1 font-mono font-bold text-3xl md:text-5xl">/04</p>
+          <h3 class="md:col-span-3 text-2xl md:text-3xl font-bold tracking-tightest">Lanzamiento &amp; soporte</h3>
+          <p class="md:col-span-6 text-mute group-hover:text-paper/80 transition-colors max-w-2xl">Entrega, despliegue y 30 días de soporte post-lanzamiento. Te quedas con todo: código, archivos fuente, accesos.</p>
+          <p class="md:col-span-2 md:text-right font-mono text-sm text-mute group-hover:text-paper/70 transition-colors">Semana 9+</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPACIDADES -->
+  <section id="capacidades" class="px-6 md:px-10 py-24 md:py-32 border-b border-ink">
+    <div class="max-w-[1600px] mx-auto">
+
+      <div class="grid md:grid-cols-12 gap-10 mb-16">
+        <div class="md:col-span-6 reveal">
+          <p class="font-mono text-xs uppercase tracking-widest text-mute mb-6">/ Capacidades</p>
+          <h2 class="font-bold tracking-tightest leading-[0.9] text-5xl md:text-7xl">
+            Lo que<br/>hacemos <span class="italic font-serif font-normal text-accent">bien</span>.
+          </h2>
+        </div>
+      </div>
+
+      <ul class="divide-y divide-line border-t border-line">
+        <li class="grid md:grid-cols-12 gap-6 py-8 md:py-10 group">
+          <p class="md:col-span-1 font-mono text-mute">01</p>
+          <h3 class="md:col-span-4 text-2xl md:text-3xl font-bold group-hover:text-accent transition-colors">Branding</h3>
+          <p class="md:col-span-5 text-mute">Naming, identidad visual, sistemas de marca, guidelines.</p>
+          <p class="md:col-span-2 md:text-right font-mono text-sm text-mute">desde 4.500 €</p>
+        </li>
+        <li class="grid md:grid-cols-12 gap-6 py-8 md:py-10 group">
+          <p class="md:col-span-1 font-mono text-mute">02</p>
+          <h3 class="md:col-span-4 text-2xl md:text-3xl font-bold group-hover:text-accent transition-colors">Web Design &amp; Dev</h3>
+          <p class="md:col-span-5 text-mute">Webs a medida, landings, portfolios, sitios de empresa.</p>
+          <p class="md:col-span-2 md:text-right font-mono text-sm text-mute">desde 3.200 €</p>
+        </li>
+        <li class="grid md:grid-cols-12 gap-6 py-8 md:py-10 group">
+          <p class="md:col-span-1 font-mono text-mute">03</p>
+          <h3 class="md:col-span-4 text-2xl md:text-3xl font-bold group-hover:text-accent transition-colors">Producto digital</h3>
+          <p class="md:col-span-5 text-mute">Diseño UX/UI de apps, dashboards y plataformas SaaS.</p>
+          <p class="md:col-span-2 md:text-right font-mono text-sm text-mute">presupuesto</p>
+        </li>
+        <li class="grid md:grid-cols-12 gap-6 py-8 md:py-10 group">
+          <p class="md:col-span-1 font-mono text-mute">04</p>
+          <h3 class="md:col-span-4 text-2xl md:text-3xl font-bold group-hover:text-accent transition-colors">Dirección de arte</h3>
+          <p class="md:col-span-5 text-mute">Campañas, dirección visual, retainers de marca.</p>
+          <p class="md:col-span-2 md:text-right font-mono text-sm text-mute">por proyecto</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="px-6 md:px-10 py-32 md:py-44 bg-accent text-paper relative overflow-hidden">
+
+    <div aria-hidden="true" class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10 select-none">
+      <span class="font-bold text-[28vw] leading-none tracking-tightest">N/</span>
+    </div>
+
+    <div class="max-w-[1600px] mx-auto relative z-10">
+
+      <p class="font-mono text-xs uppercase tracking-widest text-paper/70 mb-8 reveal">/ Contacto</p>
+
+      <h2 class="reveal delay-1 font-bold tracking-tightest leading-[0.9] text-6xl md:text-8xl lg:text-9xl">
+        ¿Hablamos<br/>de tu <span class="italic font-serif font-normal">marca</span>?
+      </h2>
+
+      <div class="reveal delay-2 mt-16 grid md:grid-cols-12 gap-10">
+        <div class="md:col-span-6">
+          <p class="text-lg md:text-xl text-paper/85 leading-relaxed max-w-xl">
+            Cuéntanos qué necesitas y desde dónde partes. Te contestamos en menos de 48 h con un primer encaje. Sin coste, sin compromiso.
+          </p>
+          <a href="mailto:hola@norte.studio" class="inline-flex items-center gap-3 mt-10 px-7 py-4 rounded-full bg-paper text-ink font-bold hover:bg-ink hover:text-paper transition-colors">
+            hola@norte.studio
+            <span>→</span>
+          </a>
+        </div>
+
+        <div class="md:col-span-5 md:col-start-8 space-y-8">
+          <div class="border-t border-paper/30 pt-6">
+            <p class="font-mono text-xs uppercase tracking-widest text-paper/60">Estudio</p>
+            <p class="mt-2 text-lg">Donostia · País Vasco</p>
+          </div>
+          <div class="border-t border-paper/30 pt-6">
+            <p class="font-mono text-xs uppercase tracking-widest text-paper/60">Disponibilidad</p>
+            <p class="mt-2 text-lg">Q3 2026 · 2 plazas abiertas</p>
+          </div>
+          <div class="border-t border-paper/30 pt-6">
+            <p class="font-mono text-xs uppercase tracking-widest text-paper/60">Síguenos</p>
+            <p class="mt-2 text-lg">@norte.studio · Instagram · Are.na</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Banda de clientes -->
+  <section class="bg-paper border-t border-ink py-10 overflow-hidden">
+    <p class="text-center font-mono text-xs uppercase tracking-widest text-mute mb-6">/ Han confiado en nosotros</p>
+    <div class="marquee whitespace-nowrap font-bold tracking-tightest text-3xl md:text-4xl leading-none opacity-80">
+      <span class="px-8">OLATUA</span><span class="px-8 text-accent">/</span>
+      <span class="px-8 italic font-serif font-normal">Bidean</span><span class="px-8 text-accent">/</span>
+      <span class="px-8">MAREO</span><span class="px-8 text-accent">/</span>
+      <span class="px-8 italic font-serif font-normal">Hago wine</span><span class="px-8 text-accent">/</span>
+      <span class="px-8">UMORE</span><span class="px-8 text-accent">/</span>
+      <span class="px-8 italic font-serif font-normal">Errota studio</span><span class="px-8 text-accent">/</span>
+      <span class="px-8">KAIA</span><span class="px-8 text-accent">/</span>
+      <span class="px-8">OLATUA</span><span class="px-8 text-accent">/</span>
+      <span class="px-8 italic font-serif font-normal">Bidean</span><span class="px-8 text-accent">/</span>
+      <span class="px-8">MAREO</span><span class="px-8 text-accent">/</span>
+      <span class="px-8 italic font-serif font-normal">Hago wine</span><span class="px-8 text-accent">/</span>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="px-6 md:px-10 py-12 bg-ink text-paper">
+    <div class="max-w-[1600px] mx-auto flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+      <div>
+        <p class="font-bold text-2xl tracking-tightest">NORTE<span class="text-accent">/</span>studio</p>
+        <p class="text-paper/60 text-sm mt-1 font-mono">Brand · Web · Producto · est. 2024</p>
+      </div>
+      <div class="md:text-right text-sm text-paper/60 font-mono">
+        <p>Concept site · 2026</p>
+        <p>Diseñado y desarrollado por <a href="../" class="link text-paper font-bold">Hugo Alonso ↗</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    window.addEventListener('load', () => {
+      document.querySelectorAll('section#top .reveal').forEach((el, i) => setTimeout(() => el.classList.add('in'), 80 * i));
+    });
+  </script>
+
+</body>
+</html>

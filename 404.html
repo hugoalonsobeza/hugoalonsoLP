@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Hugo Alonso</title>
+  <meta name="description" content="Esta página se perdió por el camino." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #FAFAF7;
+      color: #0A0A0A;
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .serif { font-family: 'Instrument Serif', serif; }
+    @keyframes drift { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    .drift { animation: drift 6s ease-in-out infinite; }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center px-6">
+  <div class="text-center max-w-xl">
+    <p class="drift serif italic text-[clamp(8rem,22vw,16rem)] leading-none text-[#E04E1A]">404</p>
+    <h1 class="mt-6 text-3xl md:text-5xl font-medium tracking-tight leading-tight">
+      Esta página se ha <span class="serif italic">perdido</span>.
+    </h1>
+    <p class="mt-6 text-lg text-[#6B6B66] max-w-md mx-auto">
+      O la moví, o nunca existió, o le pasó algo raro. Volvamos a tierra firme.
+    </p>
+    <a href="/" class="inline-flex items-center gap-3 mt-10 px-7 py-3 rounded-full bg-[#0A0A0A] text-[#FAFAF7] font-medium hover:bg-[#E04E1A] transition-colors">
+      Volver al inicio
+      <span>→</span>
+    </a>
+  </div>
+</body>
+</html>

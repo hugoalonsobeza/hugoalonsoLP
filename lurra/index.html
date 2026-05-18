@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lurra Coffee — Café de especialidad · Donostia</title>
+  <meta name="description" content="Café de especialidad tostado en Donostia. Tienda online y suscripción mensual de granos frescos." />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Fraunces', 'serif'],
+          },
+          colors: {
+            paper: '#F4EFE6',
+            sand: '#E8DFC9',
+            coffee: '#3B2418',
+            terra: '#C8542B',
+            cream: '#FBF7EE',
+            mute: '#7B6A56',
+            ink: '#221610',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #F4EFE6; color: #221610; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 1s cubic-bezier(.22,.61,.36,1), transform 1s cubic-bezier(.22,.61,.36,1); }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: .1s; } .delay-2 { transition-delay: .2s; } .delay-3 { transition-delay: .3s; }
+
+    .link { position: relative; }
+    .link::after { content:''; position: absolute; left: 0; bottom: -2px; width: 100%; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .5s cubic-bezier(.22,.61,.36,1); }
+    .link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+    /* Bag (saquito de café) — usamos gradientes y formas */
+    .bag {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+    .bag::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 18%;
+      background: rgba(0,0,0,0.18);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .bag-1 { background: linear-gradient(170deg, #3B2418 0%, #6E3A20 60%, #C8542B 100%); }
+    .bag-2 { background: linear-gradient(170deg, #1F1410 0%, #3B2418 70%, #7B5530 100%); }
+    .bag-3 { background: linear-gradient(170deg, #C8542B 0%, #E8B179 70%, #F4EFE6 100%); }
+    .bag-4 { background: linear-gradient(170deg, #221610 0%, #C8542B 100%); }
+
+    .btn-primary { transition: background-color .35s ease, color .35s ease, transform .25s ease; }
+    .btn-primary:hover { transform: translateY(-2px); }
+
+    .product { transition: transform .5s cubic-bezier(.22,.61,.36,1); }
+    .product:hover { transform: translateY(-6px); }
+
+    ::selection { background: #C8542B; color: #FBF7EE; }
+  </style>
+</head>
+
+<body class="overflow-x-hidden">
+
+  <!-- Banner -->
+  <div class="bg-coffee text-cream text-xs py-2.5 px-6 text-center relative z-50">
+    <span class="opacity-70">Concept site —</span>
+    <a href="../" class="link font-medium ml-1">Diseñado y desarrollado por Hugo Alonso ↗</a>
+  </div>
+
+  <!-- Anuncio top -->
+  <div class="bg-terra text-cream text-xs py-2 px-6 text-center font-medium tracking-wider uppercase">
+    Envío gratis en pedidos &gt; 25 € · 48 h en península
+  </div>
+
+  <!-- Nav -->
+  <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur-md border-b border-coffee/10">
+    <nav class="max-w-7xl mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
+      <a href="#top" class="font-display text-2xl tracking-tight">Lurra<span class="italic text-terra">.</span></a>
+      <ul class="hidden md:flex items-center gap-10 text-sm">
+        <li><a href="#tienda" class="link">Tienda</a></li>
+        <li><a href="#suscripcion" class="link">Suscripción</a></li>
+        <li><a href="#historia" class="link">Historia</a></li>
+        <li><a href="#cafetera" class="link">Cafetería</a></li>
+      </ul>
+      <div class="flex items-center gap-5">
+        <button class="hidden md:inline text-sm link">Iniciar sesión</button>
+        <a href="#tienda" class="inline-flex items-center gap-2 text-sm px-5 py-2.5 rounded-full bg-coffee text-cream font-medium btn-primary">
+          Cesta · 0
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" class="px-6 md:px-10 pt-16 md:pt-24 pb-24">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-12 gap-10 items-center">
+
+      <div class="md:col-span-7 reveal">
+        <p class="text-xs uppercase tracking-[0.3em] text-terra mb-8 font-medium">Café de especialidad · Donostia</p>
+        <h1 class="font-display font-medium leading-[0.95] text-[clamp(3.5rem,10vw,9rem)] tracking-tight">
+          Café que sabe de<br/>
+          <span class="italic">dónde viene.</span>
+        </h1>
+        <p class="mt-10 text-xl text-mute leading-relaxed max-w-lg">
+          Tostamos grano fresco cada semana en nuestro pequeño obrador. Trazabilidad de finca, comercio directo y un sabor que recuerdas.
+        </p>
+
+        <div class="mt-12 flex flex-wrap items-center gap-4">
+          <a href="#tienda" class="inline-flex items-center gap-3 px-7 py-4 rounded-full bg-coffee text-cream font-medium btn-primary text-lg">
+            Ver cafés
+            <span>→</span>
+          </a>
+          <a href="#suscripcion" class="inline-flex items-center gap-3 px-7 py-4 rounded-full border-2 border-coffee text-coffee font-medium hover:bg-coffee hover:text-cream transition-colors text-lg">
+            Suscribirme
+          </a>
+        </div>
+
+        <div class="mt-14 flex items-center gap-8 text-sm text-mute">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-terra"></span> Tostado ayer
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-coffee"></span> +1.200 pedidos · 4,9 ★
+          </div>
+        </div>
+      </div>
+
+      <div class="md:col-span-5 reveal delay-2">
+        <div class="bag bag-1 max-w-sm mx-auto shadow-2xl">
+          <div class="absolute inset-x-0 bottom-0 p-8 text-cream">
+            <p class="text-xs uppercase tracking-widest text-cream/60 mb-2">— Edición de marzo —</p>
+            <p class="font-display text-4xl leading-tight">Etiopía<br/><span class="italic">Yirgacheffe</span></p>
+            <p class="text-cream/70 mt-3 text-sm">Notas florales · jazmín · bergamota</p>
+            <div class="mt-6 flex items-end justify-between">
+              <p class="font-display text-2xl">14,50 €</p>
+              <p class="text-xs text-cream/60">250 g</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TIRA DE VENTAJAS -->
+  <section class="px-6 md:px-10 py-10 bg-coffee text-cream">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8 text-center">
+      <div>
+        <p class="font-display text-3xl mb-1">Fresco</p>
+        <p class="text-sm text-cream/70">Tostado &lt; 7 días antes</p>
+      </div>
+      <div>
+        <p class="font-display text-3xl mb-1">Trazable</p>
+        <p class="text-sm text-cream/70">Finca, lote y altitud</p>
+      </div>
+      <div>
+        <p class="font-display text-3xl mb-1">Directo</p>
+        <p class="text-sm text-cream/70">Pago justo al productor</p>
+      </div>
+      <div>
+        <p class="font-display text-3xl mb-1">Pequeño</p>
+        <p class="text-sm text-cream/70">Lotes &lt; 10 kg</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIENDA -->
+  <section id="tienda" class="px-6 md:px-10 py-24 md:py-32">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 reveal">
+        <div>
+          <p class="text-xs uppercase tracking-[0.3em] text-terra mb-4 font-medium">— Nuestros cafés —</p>
+          <h2 class="font-display text-4xl md:text-6xl leading-tight tracking-tight">
+            Lo que estamos<br/><span class="italic">tostando ahora</span>.
+          </h2>
+        </div>
+        <a href="#" class="link text-sm font-medium self-start">Ver tienda completa →</a>
+      </div>
+
+      <!-- Filtros + ordenación (e-commerce real) -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-10 pb-6 border-b border-coffee/15 reveal">
+        <div class="flex flex-wrap gap-2">
+          <button class="px-4 py-2 rounded-full bg-coffee text-cream text-sm font-medium">Todos · 12</button>
+          <button class="px-4 py-2 rounded-full border border-coffee/20 hover:border-coffee text-sm transition-colors">Filtrado · 5</button>
+          <button class="px-4 py-2 rounded-full border border-coffee/20 hover:border-coffee text-sm transition-colors">Espresso · 4</button>
+          <button class="px-4 py-2 rounded-full border border-coffee/20 hover:border-coffee text-sm transition-colors">Descafeinados · 2</button>
+          <button class="px-4 py-2 rounded-full border border-coffee/20 hover:border-coffee text-sm transition-colors">Microlotes ★</button>
+        </div>
+        <div class="flex items-center gap-3 text-sm">
+          <span class="text-mute">Ordenar por</span>
+          <select class="bg-transparent border-b border-coffee/30 py-1 pr-6 focus:outline-none focus:border-coffee text-coffee">
+            <option>Novedades</option>
+            <option>Precio ↑</option>
+            <option>Precio ↓</option>
+            <option>Mejor valorados</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-6 md:gap-8">
+
+        <!-- Producto 1 -->
+        <div class="product reveal relative">
+          <span class="absolute top-3 left-3 z-10 bg-terra text-cream text-[10px] uppercase tracking-widest font-bold px-2.5 py-1 rounded-full">Recién tostado</span>
+          <div class="bag bag-1"></div>
+          <div class="mt-5">
+            <div class="flex items-center justify-between mb-1">
+              <p class="text-xs uppercase tracking-widest text-terra">Etiopía</p>
+              <p class="text-xs text-mute flex items-center gap-1">★★★★★ <span class="text-coffee/60">(184)</span></p>
+            </div>
+            <h3 class="font-display text-2xl mt-1">Yirgacheffe</h3>
+            <p class="text-sm text-mute mt-1">Floral · cítrico · jazmín</p>
+            <p class="text-xs text-terra mt-2 font-medium">● En stock · envío en 24h</p>
+            <div class="mt-4 flex items-end justify-between">
+              <p class="font-display text-xl">14,50 €</p>
+              <button class="px-4 py-2 rounded-full bg-coffee text-cream text-xs uppercase tracking-widest font-medium hover:bg-terra transition-colors">+ Añadir</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Producto 2 -->
+        <div class="product reveal delay-1 relative">
+          <div class="bag bag-2"></div>
+          <div class="mt-5">
+            <div class="flex items-center justify-between mb-1">
+              <p class="text-xs uppercase tracking-widest text-terra">Colombia</p>
+              <p class="text-xs text-mute flex items-center gap-1">★★★★★ <span class="text-coffee/60">(312)</span></p>
+            </div>
+            <h3 class="font-display text-2xl mt-1">Huila Las Flores</h3>
+            <p class="text-sm text-mute mt-1">Chocolate · caramelo · cuerpo</p>
+            <p class="text-xs text-terra mt-2 font-medium">● En stock · envío en 24h</p>
+            <div class="mt-4 flex items-end justify-between">
+              <p class="font-display text-xl">13,00 €</p>
+              <button class="px-4 py-2 rounded-full bg-coffee text-cream text-xs uppercase tracking-widest font-medium hover:bg-terra transition-colors">+ Añadir</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Producto 3 -->
+        <div class="product reveal delay-2 relative">
+          <span class="absolute top-3 left-3 z-10 bg-coffee text-cream text-[10px] uppercase tracking-widest font-bold px-2.5 py-1 rounded-full">★ Microlote</span>
+          <div class="bag bag-3"></div>
+          <div class="mt-5">
+            <div class="flex items-center justify-between mb-1">
+              <p class="text-xs uppercase tracking-widest text-terra">Kenya</p>
+              <p class="text-xs text-mute flex items-center gap-1">★★★★★ <span class="text-coffee/60">(47)</span></p>
+            </div>
+            <h3 class="font-display text-2xl mt-1">Nyeri AA</h3>
+            <p class="text-sm text-mute mt-1">Frutos rojos · vino · brillante</p>
+            <p class="text-xs text-terra mt-2 font-medium">● Últimas 12 bolsas</p>
+            <div class="mt-4 flex items-end justify-between">
+              <p class="font-display text-xl">16,00 €</p>
+              <button class="px-4 py-2 rounded-full bg-coffee text-cream text-xs uppercase tracking-widest font-medium hover:bg-terra transition-colors">+ Añadir</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Producto 4 -->
+        <div class="product reveal delay-3 relative">
+          <div class="bag bag-4"></div>
+          <div class="mt-5">
+            <div class="flex items-center justify-between mb-1">
+              <p class="text-xs uppercase tracking-widest text-terra">Brasil</p>
+              <p class="text-xs text-mute flex items-center gap-1">★★★★☆ <span class="text-coffee/60">(98)</span></p>
+            </div>
+            <h3 class="font-display text-2xl mt-1">Mantiqueira</h3>
+            <p class="text-sm text-mute mt-1">Nuez · cacao · dulce</p>
+            <p class="text-xs text-terra mt-2 font-medium">● En stock · envío en 24h</p>
+            <div class="mt-4 flex items-end justify-between">
+              <p class="font-display text-xl">12,00 €</p>
+              <button class="px-4 py-2 rounded-full bg-coffee text-cream text-xs uppercase tracking-widest font-medium hover:bg-terra transition-colors">+ Añadir</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SUSCRIPCIÓN -->
+  <section id="suscripcion" class="px-6 md:px-10 py-24 md:py-40 bg-sand">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-12 gap-12 items-center">
+
+      <div class="md:col-span-6 reveal">
+        <p class="text-xs uppercase tracking-[0.3em] text-terra mb-6 font-medium">— Suscripción mensual —</p>
+        <h2 class="font-display text-4xl md:text-6xl leading-tight tracking-tight">
+          Un café <span class="italic">distinto</span><br/>cada mes.
+        </h2>
+        <p class="mt-8 text-lg text-mute leading-relaxed max-w-lg">
+          Te enviamos a casa una bolsa de 250 g del café que más nos haya enamorado ese mes. Pausas y cancelas cuando quieras. Sin permanencia, sin paquetes raros.
+        </p>
+
+        <ul class="mt-10 space-y-4 text-coffee">
+          <li class="flex gap-3 items-start">
+            <span class="font-display italic text-terra text-xl">i.</span>
+            <span>Café de origen único, tostado a los 3 días</span>
+          </li>
+          <li class="flex gap-3 items-start">
+            <span class="font-display italic text-terra text-xl">ii.</span>
+            <span>Ficha de cata con notas, finca y receta sugerida</span>
+          </li>
+          <li class="flex gap-3 items-start">
+            <span class="font-display italic text-terra text-xl">iii.</span>
+            <span>Envío gratis, todos los meses, sin pensarlo</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-5 md:col-start-8 reveal delay-2">
+        <div class="bg-cream rounded-2xl p-8 md:p-10 shadow-xl border border-coffee/10">
+          <p class="text-xs uppercase tracking-widest text-terra font-medium">Plan mensual</p>
+          <p class="font-display text-6xl mt-3">13,90 €<span class="text-lg text-mute font-sans">/mes</span></p>
+          <p class="text-sm text-mute mt-2">250 g · envío gratis · cancela cuando quieras</p>
+
+          <div class="mt-8 space-y-3 text-sm">
+            <p class="flex items-center gap-2"><span class="text-terra">✓</span> Café distinto cada mes</p>
+            <p class="flex items-center gap-2"><span class="text-terra">✓</span> Ficha de cata impresa</p>
+            <p class="flex items-center gap-2"><span class="text-terra">✓</span> Envío en 48 h tras tostado</p>
+            <p class="flex items-center gap-2"><span class="text-terra">✓</span> Acceso a microlotes exclusivos</p>
+          </div>
+
+          <button onclick="alert('Demo concept site. La suscripción no se procesa — esta web es un proyecto de portfolio.')" class="w-full mt-8 px-7 py-4 rounded-full bg-terra text-cream font-medium btn-primary">
+            Empezar suscripción →
+          </button>
+          <p class="text-xs text-mute mt-3 text-center">Primer mes a 9,90 € · sin compromiso</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTORIA -->
+  <section id="historia" class="px-6 md:px-10 py-24 md:py-40 bg-coffee text-cream">
+    <div class="max-w-5xl mx-auto text-center reveal">
+      <p class="text-xs uppercase tracking-[0.3em] text-terra mb-10 font-medium">— Nuestra historia —</p>
+      <h2 class="font-display text-4xl md:text-6xl leading-tight tracking-tight">
+        Empezamos con una tostadora<br/>de <span class="italic">2 kg</span> en un garaje.
+      </h2>
+      <p class="mt-10 text-lg md:text-xl text-cream/80 leading-relaxed max-w-2xl mx-auto">
+        Tres años después seguimos siendo pequeños — y orgullosos de serlo. Compramos directamente a fincas en Etiopía, Colombia y Kenya, las visitamos cada año y pagamos hasta 3x el precio de mercado. No es caridad, es coherencia.
+      </p>
+      <a href="#" class="link mt-10 inline-block text-sm font-medium">Conoce a los productores →</a>
+    </div>
+  </section>
+
+  <!-- CAFETERÍA -->
+  <section id="cafetera" class="px-6 md:px-10 py-24 md:py-32">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-12 gap-12 items-center">
+
+      <div class="md:col-span-6 reveal">
+        <div class="bag bag-3 aspect-[4/3] rounded-2xl"></div>
+      </div>
+
+      <div class="md:col-span-5 md:col-start-8 reveal delay-1">
+        <p class="text-xs uppercase tracking-[0.3em] text-terra mb-6 font-medium">— Visítanos —</p>
+        <h2 class="font-display text-4xl md:text-5xl leading-tight tracking-tight">
+          Café, brunch y obrador a la vista.
+        </h2>
+        <div class="mt-10 space-y-5">
+          <div>
+            <p class="text-xs uppercase tracking-widest text-mute mb-1">Dirección</p>
+            <p>C/ San Bartolomé 18 · Donostia</p>
+          </div>
+          <div>
+            <p class="text-xs uppercase tracking-widest text-mute mb-1">Horario</p>
+            <p>L-V · 7:30 - 18:00 · S-D · 9:00 - 17:00</p>
+          </div>
+          <div>
+            <p class="text-xs uppercase tracking-widest text-mute mb-1">Contacto</p>
+            <p>hola@lurra.coffee · @lurra.coffee</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUÍA DE PREPARACIÓN -->
+  <section class="px-6 md:px-10 py-24 md:py-32 bg-sand">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="text-center mb-16 reveal">
+        <p class="text-xs uppercase tracking-[0.3em] text-terra mb-6 font-medium">— Guía rápida —</p>
+        <h2 class="font-display text-4xl md:text-6xl leading-tight tracking-tight">
+          Tu café perfecto<br/>en <span class="italic">tres pasos</span>.
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+        <div class="bg-cream rounded-2xl p-8 reveal">
+          <p class="font-display text-7xl text-terra leading-none">01</p>
+          <h3 class="font-display text-2xl mt-6">Mide</h3>
+          <p class="text-sm text-mute mt-3 leading-relaxed">15 gramos de café por 250 ml de agua. Empieza por ahí — luego ajustas a tu gusto.</p>
+          <p class="text-xs uppercase tracking-widest text-terra mt-6 font-medium">Filtrado · V60</p>
+        </div>
+        <div class="bg-cream rounded-2xl p-8 reveal delay-1">
+          <p class="font-display text-7xl text-terra leading-none">02</p>
+          <h3 class="font-display text-2xl mt-6">Muele</h3>
+          <p class="text-sm text-mute mt-3 leading-relaxed">Justo antes de preparar. Molienda media — como sal de mar. El café molido pierde aromas en horas.</p>
+          <p class="text-xs uppercase tracking-widest text-terra mt-6 font-medium">5-10 segundos</p>
+        </div>
+        <div class="bg-cream rounded-2xl p-8 reveal delay-2">
+          <p class="font-display text-7xl text-terra leading-none">03</p>
+          <h3 class="font-display text-2xl mt-6">Infusiona</h3>
+          <p class="text-sm text-mute mt-3 leading-relaxed">Agua a 93 °C. Vierte despacio en círculos. Tiempo total — 3 minutos. Y a disfrutar.</p>
+          <p class="text-xs uppercase tracking-widest text-terra mt-6 font-medium">3:00 min</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-14 reveal">
+        <a href="#" class="link text-sm font-medium">Ver todas las recetas →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEÑAS -->
+  <section class="px-6 md:px-10 py-24 md:py-32">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16 reveal">
+        <div>
+          <p class="text-xs uppercase tracking-[0.3em] text-terra mb-4 font-medium">— Lo que dice la gente —</p>
+          <h2 class="font-display text-4xl md:text-6xl leading-tight tracking-tight">
+            4,9 ★ de 1.200<br/><span class="italic">opiniones reales</span>.
+          </h2>
+        </div>
+        <div class="text-sm text-mute md:text-right">
+          <p>Verificadas por Trustpilot</p>
+          <p class="font-display text-3xl text-coffee mt-1">★★★★★</p>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+
+        <div class="bg-cream p-8 rounded-2xl reveal">
+          <p class="font-display text-2xl text-terra">★★★★★</p>
+          <p class="font-display text-xl mt-4 leading-snug">"El mejor café que he tomado en casa, sin exagerar."</p>
+          <p class="text-sm text-mute mt-4 leading-relaxed">Llevo seis meses con la suscripción y cada bolsa es una sorpresa. La ficha de cata es un detalle precioso.</p>
+          <div class="mt-6 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-terra to-coffee"></div>
+            <div>
+              <p class="text-sm font-medium">Maite I.</p>
+              <p class="text-xs text-mute">Donostia · Suscriptora</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-cream p-8 rounded-2xl reveal delay-1">
+          <p class="font-display text-2xl text-terra">★★★★★</p>
+          <p class="font-display text-xl mt-4 leading-snug">"Calidad de cafetería de especialidad, en mi cocina."</p>
+          <p class="text-sm text-mute mt-4 leading-relaxed">Probé el Yirgacheffe y no he vuelto al supermercado. Trato impecable y envío rapidísimo. Repetiré seguro.</p>
+          <div class="mt-6 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-coffee to-ink"></div>
+            <div>
+              <p class="text-sm font-medium">Iker M.</p>
+              <p class="text-xs text-mute">Bilbao · Cliente</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-cream p-8 rounded-2xl reveal delay-2">
+          <p class="font-display text-2xl text-terra">★★★★★</p>
+          <p class="font-display text-xl mt-4 leading-snug">"La suscripción me ha hecho amar el café otra vez."</p>
+          <p class="text-sm text-mute mt-4 leading-relaxed">Cada mes uno distinto, perfectamente tostado y con una historia detrás. Por fin alguien que cuida el detalle.</p>
+          <div class="mt-6 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-sand to-terra"></div>
+            <div>
+              <p class="text-sm font-medium">Laura B.</p>
+              <p class="text-xs text-mute">Madrid · Suscriptora</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="px-6 md:px-10 py-20 bg-terra text-cream">
+    <div class="max-w-4xl mx-auto text-center reveal">
+      <h2 class="font-display text-3xl md:text-5xl leading-tight">
+        Apúntate al <span class="italic">cuaderno</span>.
+      </h2>
+      <p class="mt-4 text-cream/85 max-w-xl mx-auto">
+        Una vez al mes, sin spam: nuevos lotes, recetas y cosas que aprendemos viajando a fincas.
+      </p>
+      <form onsubmit="event.preventDefault(); alert('Demo concept site. El newsletter no se procesa.');" class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input type="email" required placeholder="tu@email.com" class="flex-1 bg-cream/15 border border-cream/30 rounded-full px-5 py-3 placeholder:text-cream/50 outline-none focus:bg-cream/25 focus:border-cream transition-colors" />
+        <button class="px-6 py-3 rounded-full bg-cream text-terra font-medium btn-primary">Suscribirme</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="px-6 md:px-10 py-14 bg-coffee text-cream">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-5">
+        <p class="font-display text-3xl">Lurra<span class="italic text-terra">.</span></p>
+        <p class="text-cream/60 text-sm mt-3 max-w-xs">Café de especialidad tostado en Donostia. Pequeño, fresco, trazable.</p>
+      </div>
+      <div class="md:col-span-2 text-sm space-y-2">
+        <p class="text-cream/40 uppercase tracking-widest text-xs mb-3">Tienda</p>
+        <p>Cafés</p>
+        <p>Suscripción</p>
+        <p>Equipamiento</p>
+      </div>
+      <div class="md:col-span-2 text-sm space-y-2">
+        <p class="text-cream/40 uppercase tracking-widest text-xs mb-3">Lurra</p>
+        <p>Historia</p>
+        <p>Productores</p>
+        <p>Cafetería</p>
+      </div>
+      <div class="md:col-span-3 text-sm space-y-2">
+        <p class="text-cream/40 uppercase tracking-widest text-xs mb-3">Ayuda</p>
+        <p>Envíos &amp; devoluciones</p>
+        <p>Contacto</p>
+        <p>FAQ</p>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto mt-12 pt-6 border-t border-cream/15 flex flex-col md:flex-row md:items-end md:justify-between gap-4 text-xs text-cream/50">
+      <p>© 2026 Lurra Coffee SL · Donostia · España</p>
+      <p>Concept site · Diseñado y desarrollado por <a href="../" class="link text-cream font-medium">Hugo Alonso ↗</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    window.addEventListener('load', () => {
+      document.querySelectorAll('section#top .reveal').forEach((el, i) => setTimeout(() => el.classList.add('in'), 80 * i));
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aritza Bistró — Pintxos & cocina vasca · Donostia</title>
+  <meta name="description" content="Cocina vasca contemporánea en el corazón de la Parte Vieja. Pintxos, raciones y vinos del norte. Reservas online." />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['"Cormorant Garamond"', 'serif'],
+          },
+          colors: {
+            cream: '#F5EFE3',
+            bone: '#EBE3D2',
+            ink: '#1A1410',
+            wine: '#6E1F26',
+            warm: '#8E6D4A',
+            mute: '#7A6D5C',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #F5EFE3; color: #1A1410; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 1s cubic-bezier(.22,.61,.36,1), transform 1s cubic-bezier(.22,.61,.36,1); }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: .1s; } .delay-2 { transition-delay: .2s; } .delay-3 { transition-delay: .3s; }
+
+    .link { position: relative; }
+    .link::after { content:''; position: absolute; left: 0; bottom: -2px; width: 100%; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .5s cubic-bezier(.22,.61,.36,1); }
+    .link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+    .photo {
+      background: linear-gradient(135deg, #C9A878 0%, #6E1F26 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .photo::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.18), transparent 50%);
+    }
+    .photo-2 { background: linear-gradient(160deg, #2A1A14 0%, #6E1F26 70%, #C9A878 100%); }
+    .photo-3 { background: linear-gradient(200deg, #8E6D4A 0%, #1A1410 100%); }
+    .photo-4 { background: linear-gradient(120deg, #EBE3D2 0%, #C9A878 60%, #6E1F26 100%); }
+
+    .btn-primary { transition: background-color .35s ease, color .35s ease, transform .25s ease; }
+    .btn-primary:hover { background: #1A1410; color: #F5EFE3; transform: translateY(-1px); }
+
+    ::selection { background: #6E1F26; color: #F5EFE3; }
+  </style>
+</head>
+
+<body class="overflow-x-hidden">
+
+  <!-- Banner concept site -->
+  <div class="bg-ink text-cream text-xs py-2.5 px-6 text-center relative z-50">
+    <span class="opacity-70">Concept site —</span>
+    <a href="../" class="link font-medium ml-1">Diseñado y desarrollado por Hugo Alonso ↗</a>
+  </div>
+
+  <!-- Nav -->
+  <header class="sticky top-0 z-40 bg-cream/85 backdrop-blur-md border-b border-ink/10">
+    <nav class="max-w-7xl mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
+      <a href="#top" class="font-serif italic text-2xl">Aritza</a>
+      <ul class="hidden md:flex items-center gap-10 text-sm">
+        <li><a href="#filosofia" class="link">Filosofía</a></li>
+        <li><a href="#menu" class="link">Menú</a></li>
+        <li><a href="#galeria" class="link">Galería</a></li>
+        <li><a href="#visita" class="link">Visita</a></li>
+      </ul>
+      <a href="#reservar" class="inline-flex items-center gap-2 text-sm px-5 py-2.5 rounded-full bg-ink text-cream btn-primary border border-ink">
+        Reservar
+      </a>
+    </nav>
+  </header>
+
+  <!-- HERO cinematográfico full-bleed -->
+  <section id="top" class="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
+    <!-- Foto de fondo -->
+    <div class="absolute inset-0 photo-2"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/20 to-ink/80"></div>
+
+    <!-- Detalle superior -->
+    <div class="absolute top-10 left-1/2 -translate-x-1/2 text-cream/70 font-serif italic text-sm tracking-widest reveal">
+      — Donostia · MMXVIII —
+    </div>
+
+    <!-- Contenido centrado -->
+    <div class="relative z-10 text-center px-6 max-w-5xl">
+      <p class="text-xs uppercase tracking-[0.5em] text-cream/70 mb-10 reveal">Cocina vasca contemporánea</p>
+      <h1 class="reveal delay-1 font-serif font-medium text-cream leading-[0.95] text-[clamp(4rem,14vw,13rem)] tracking-tight">
+        Aritza
+      </h1>
+      <p class="reveal delay-2 font-serif italic text-3xl md:text-5xl text-cream/85 -mt-2">— Bistró —</p>
+
+      <p class="reveal delay-3 mt-14 text-lg md:text-xl text-cream/80 max-w-xl mx-auto leading-relaxed font-serif italic">
+        Producto, fuego y tradición. En el corazón de la Parte Vieja, desde 2018.
+      </p>
+
+      <div class="reveal delay-3 mt-12 flex justify-center items-center gap-8 flex-wrap">
+        <a href="#reservar" class="inline-flex items-center gap-3 px-7 py-3 rounded-full bg-cream text-ink font-medium btn-primary">
+          Reservar mesa
+          <span>→</span>
+        </a>
+        <a href="#menu" class="text-cream/80 hover:text-cream link text-sm">— Ver la carta —</a>
+      </div>
+    </div>
+
+    <!-- Detalle inferior -->
+    <div class="absolute bottom-8 left-0 right-0 flex justify-between px-8 text-cream/60 text-xs font-serif italic reveal delay-3">
+      <span>Fermín Calbetón 12</span>
+      <span>Mar — Dom · 13h — 23:30h</span>
+    </div>
+  </section>
+
+  <!-- FILOSOFÍA -->
+  <section id="filosofia" class="relative px-6 md:px-10 py-32 md:py-44">
+    <span class="absolute top-10 left-1/2 -translate-x-1/2 font-serif italic text-wine text-2xl reveal">I.</span>
+    <div class="max-w-5xl mx-auto text-center reveal delay-1">
+      <p class="text-xs uppercase tracking-[0.4em] text-mute mb-10">— Nuestra cocina —</p>
+      <h2 class="font-serif text-4xl md:text-6xl leading-[1.1] max-w-3xl mx-auto">
+        Sólo entra en cocina lo que pasaríamos a la <span class="italic text-wine">mesa de nuestra abuela</span>.
+      </h2>
+      <p class="mt-12 text-lg md:text-xl text-ink/75 leading-relaxed max-w-2xl mx-auto font-serif italic">
+        Trabajamos con pequeños productores del País Vasco, Cantabria y Navarra. La carta cambia cada quince días siguiendo lo que hay — verduras de temporada, pescado de lonja, carne madurada en casa.
+      </p>
+      <div class="mt-16 flex justify-center">
+        <span class="font-serif italic text-wine">— ❦ —</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CITA / PRENSA -->
+  <section class="px-6 md:px-10 py-24 md:py-32 bg-ink text-cream">
+    <div class="max-w-4xl mx-auto text-center reveal">
+      <p class="text-xs uppercase tracking-[0.4em] text-cream/50 mb-10">— De la prensa —</p>
+      <blockquote class="font-serif italic text-3xl md:text-5xl leading-[1.15]">
+        "Aritza ha conseguido lo difícil — hacer cocina de autor sin perder un gramo de la honestidad de un bar de barrio."
+      </blockquote>
+      <p class="mt-10 text-sm text-cream/60 font-serif italic">— Diario Vasco · Gastronomía · 2024</p>
+    </div>
+  </section>
+
+  <!-- MENÚ -->
+  <section id="menu" class="relative px-6 md:px-10 py-32 md:py-40 bg-bone">
+    <span class="absolute top-10 left-1/2 -translate-x-1/2 font-serif italic text-wine text-2xl reveal">II.</span>
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center mb-20 reveal delay-1">
+        <p class="text-xs uppercase tracking-[0.4em] text-mute mb-6">— Carta de temporada —</p>
+        <h2 class="font-serif text-4xl md:text-6xl">La <span class="italic text-wine">carta</span> de esta semana.</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-x-16 gap-y-10">
+
+        <div class="reveal">
+          <p class="text-xs uppercase tracking-widest text-wine mb-6">— Para empezar —</p>
+          <ul class="space-y-6">
+            <li class="flex justify-between gap-4 items-baseline border-b border-ink/15 pb-4">
+              <div>
+                <p class="font-serif text-xl">Pintxo de tortilla cremosa</p>
+                <p class="text-sm text-mute mt-1 italic">Patata vieja, huevo de corral, cebolla pochada 4 horas</p>
+              </div>
+              <p class="font-serif text-xl whitespace-nowrap">4,50 €</p>
+            </li>
+            <li class="flex justify-between gap-4 items-baseline border-b border-ink/15 pb-4">
+              <div>
+                <p class="font-serif text-xl">Anchoa del Cantábrico</p>
+                <p class="text-sm text-mute mt-1 italic">Sobre pan tostado, aceite arbequino y guindilla</p>
+              </div>
+              <p class="font-serif text-xl whitespace-nowrap">6,00 €</p>
+            </li>
+            <li class="flex justify-between gap-4 items-baseline border-b border-ink/15 pb-4">
+              <div>
+                <p class="font-serif text-xl">Croqueta de txangurro</p>
+                <p class="text-sm text-mute mt-1 italic">Centollo de la bahía, bechamel ligera</p>
+              </div>
+              <p class="font-serif text-xl whitespace-nowrap">3,50 €</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reveal delay-1">
+          <p class="text-xs uppercase tracking-widest text-wine mb-6">— Platos principales —</p>
+          <ul class="space-y-6">
+            <li class="flex justify-between gap-4 items-baseline border-b border-ink/15 pb-4">
+              <div>
+                <p class="font-serif text-xl">Bacalao al pil-pil</p>
+                <p class="text-sm text-mute mt-1 italic">Bacalao curado en casa, emulsión clásica</p>
+              </div>
+              <p class="font-serif text-xl whitespace-nowrap">22,00 €</p>
+            </li>
+            <li class="flex justify-between gap-4 items-baseline border-b border-ink/15 pb-4">
+              <div>
+                <p class="font-serif text-xl">Txuleta de vaca vieja</p>
+                <p class="text-sm text-mute mt-1 italic">Madurada 60 días, brasa de encina, pimientos</p>
+              </div>
+              <p class="font-serif text-xl whitespace-nowrap">38,00 €</p>
+            </li>
+            <li class="flex justify-between gap-4 items-baseline border-b border-ink/15 pb-4">
+              <div>
+                <p class="font-serif text-xl">Cochinillo confitado</p>
+                <p class="text-sm text-mute mt-1 italic">A baja temperatura, jugo reducido y manzana</p>
+              </div>
+              <p class="font-serif text-xl whitespace-nowrap">26,00 €</p>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <p class="text-center mt-16 text-sm italic text-mute reveal">La carta completa, postres y menú degustación en sala. Cambiamos platos cada 15 días.</p>
+    </div>
+  </section>
+
+  <!-- CARTA DE VINOS -->
+  <section class="relative px-6 md:px-10 py-32 md:py-40 border-t border-ink/10">
+    <span class="absolute top-10 left-1/2 -translate-x-1/2 font-serif italic text-wine text-2xl reveal">III.</span>
+
+    <div class="max-w-5xl mx-auto reveal delay-1">
+      <div class="text-center mb-16">
+        <p class="text-xs uppercase tracking-[0.4em] text-mute mb-6">— Bodega —</p>
+        <h2 class="font-serif text-4xl md:text-6xl">Una <span class="italic text-wine">selección</span> a mano del sumiller.</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-10 md:gap-16">
+        <div class="text-center reveal">
+          <p class="font-serif italic text-wine text-xl mb-3">Txakoli</p>
+          <p class="text-mute text-sm leading-relaxed">12 referencias de pequeños productores de Getaria, Bizkaia y Álava.</p>
+        </div>
+        <div class="text-center reveal delay-1">
+          <p class="font-serif italic text-wine text-xl mb-3">Tintos del norte</p>
+          <p class="text-mute text-sm leading-relaxed">Rioja Alta, Navarra y Ribera del Duero — siempre con foco en bodegas familiares.</p>
+        </div>
+        <div class="text-center reveal delay-2">
+          <p class="font-serif italic text-wine text-xl mb-3">Naturales &amp; raros</p>
+          <p class="text-mute text-sm leading-relaxed">Pequeña selección rotativa de vinos sin filtrar, biodinámicos y curiosidades del mes.</p>
+        </div>
+      </div>
+
+      <div class="mt-16 text-center">
+        <p class="font-serif italic text-mute">— Carta completa disponible en sala —</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section id="galeria" class="relative px-6 md:px-10 py-32 md:py-40 border-t border-ink/10">
+    <span class="absolute top-10 left-1/2 -translate-x-1/2 font-serif italic text-wine text-2xl reveal">IV.</span>
+    <div class="max-w-7xl mx-auto mt-12">
+      <div class="grid md:grid-cols-12 gap-4 md:gap-6">
+        <div class="md:col-span-5 photo aspect-[4/5] reveal"></div>
+        <div class="md:col-span-7 md:row-span-2 photo photo-2 aspect-square md:aspect-auto reveal delay-1"></div>
+        <div class="md:col-span-5 photo photo-3 aspect-video reveal delay-2"></div>
+        <div class="md:col-span-7 photo photo-4 aspect-[3/2] reveal delay-3"></div>
+        <div class="md:col-span-5 photo aspect-[3/2] reveal"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISITA / RESERVAS -->
+  <section id="visita" class="relative px-6 md:px-10 py-32 md:py-40 bg-ink text-cream">
+    <span class="absolute top-10 left-1/2 -translate-x-1/2 font-serif italic text-cream/60 text-2xl reveal">V.</span>
+    <div class="max-w-7xl mx-auto grid md:grid-cols-12 gap-12 mt-12">
+
+      <div class="md:col-span-5 reveal">
+        <p class="text-xs uppercase tracking-[0.3em] text-cream/50 mb-8">— La casa —</p>
+        <h2 class="font-serif text-4xl md:text-5xl leading-tight">
+          C/ Fermín Calbetón 12<br/>
+          <span class="italic text-cream/70">Parte Vieja · Donostia</span>
+        </h2>
+
+        <div class="mt-12 space-y-6 text-cream/80">
+          <div>
+            <p class="text-xs uppercase tracking-widest text-cream/40 mb-2">Horario</p>
+            <p>Martes a sábado · 13:00 — 16:00 · 20:00 — 23:30</p>
+            <p>Domingo · sólo comidas · Lunes cerrado</p>
+          </div>
+          <div>
+            <p class="text-xs uppercase tracking-widest text-cream/40 mb-2">Reservas</p>
+            <p>+34 943 000 000 · reservas@aritza.eus</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form reservar -->
+      <form id="reservar" class="md:col-span-6 md:col-start-7 space-y-7 reveal delay-1">
+        <p class="text-xs uppercase tracking-[0.3em] text-cream/50">— Reservar mesa —</p>
+
+        <div class="grid grid-cols-2 gap-6">
+          <div>
+            <label class="block text-xs uppercase tracking-widest text-cream/40 mb-2">Día</label>
+            <input type="date" class="w-full bg-transparent border-b border-cream/25 focus:border-cream py-2 outline-none text-lg" />
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-widest text-cream/40 mb-2">Hora</label>
+            <input type="time" class="w-full bg-transparent border-b border-cream/25 focus:border-cream py-2 outline-none text-lg" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6">
+          <div>
+            <label class="block text-xs uppercase tracking-widest text-cream/40 mb-2">Comensales</label>
+            <input type="number" min="1" max="20" value="2" class="w-full bg-transparent border-b border-cream/25 focus:border-cream py-2 outline-none text-lg" />
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-widest text-cream/40 mb-2">Nombre</label>
+            <input type="text" placeholder="A nombre de…" class="w-full bg-transparent border-b border-cream/25 focus:border-cream py-2 outline-none text-lg placeholder:text-cream/30" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-widest text-cream/40 mb-2">Email</label>
+          <input type="email" placeholder="tu@email.com" class="w-full bg-transparent border-b border-cream/25 focus:border-cream py-2 outline-none text-lg placeholder:text-cream/30" />
+        </div>
+
+        <button type="button" onclick="alert('Demo concept site. La reserva no se procesa — esta web es un proyecto de portfolio.')" class="mt-4 inline-flex items-center gap-3 px-7 py-3 rounded-full bg-cream text-ink font-medium hover:translate-y-[-2px] transition-transform">
+          Confirmar reserva
+          <span>→</span>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="px-6 md:px-10 py-12 bg-cream border-t border-ink/10">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end md:justify-between gap-6 text-sm">
+      <div>
+        <p class="font-serif italic text-2xl mb-2">Aritza Bistró</p>
+        <p class="text-mute">Cocina vasca · Donostia · Desde 2018</p>
+      </div>
+      <div class="md:text-right text-mute">
+        <p>Concept site · 2026</p>
+        <p>Diseñado y desarrollado por <a href="../" class="link text-ink font-medium">Hugo Alonso ↗</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    window.addEventListener('load', () => {
+      document.querySelectorAll('section#top .reveal').forEach((el, i) => setTimeout(() => el.classList.add('in'), 80 * i));
+    });
+  </script>
+
+</body>
+</html>

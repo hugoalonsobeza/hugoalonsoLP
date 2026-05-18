@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hugo Alonso — Webs & Marketing Digital · Freelance</title>
+  <meta name="description" content="Hugo Alonso Bezanilla. Freelance de desarrollo web y marketing digital. Doble Grado en ADE + Ingeniería Informática en Deusto. Donostia, ES." />
+  <meta name="author" content="Hugo Alonso Bezanilla" />
+  <meta name="theme-color" content="#FAFAF7" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Hugo Alonso — Webs & Marketing Digital · Freelance" />
+  <meta property="og:description" content="Perfil híbrido — ADE + Ingeniería Informática. Webs y marketing digital para marcas que quieren venderse mejor. Donostia, ES." />
+  <meta property="og:image" content="/og-image.svg" />
+  <meta property="og:locale" content="es_ES" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Hugo Alonso — Webs & Marketing Digital · Freelance" />
+  <meta name="twitter:description" content="Perfil híbrido — ADE + Ingeniería Informática. Webs y marketing digital. Donostia, ES." />
+  <meta name="twitter:image" content="/og-image.svg" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['"Instrument Serif"', 'serif'],
+          },
+          colors: {
+            ink: '#0A0A0A',
+            paper: '#FAFAF7',
+            mute: '#6B6B66',
+            line: '#E8E6DF',
+            accent: '#E04E1A',
+          },
+          letterSpacing: {
+            tightest: '-0.04em',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      background: #FAFAF7;
+      color: #0A0A0A;
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* Grano sutil para textura premium */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    }
+
+    /* Entrada inicial */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1s cubic-bezier(.22,.61,.36,1), transform 1s cubic-bezier(.22,.61,.36,1);
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .delay-1 { transition-delay: .08s; }
+    .delay-2 { transition-delay: .16s; }
+    .delay-3 { transition-delay: .24s; }
+    .delay-4 { transition-delay: .32s; }
+    .delay-5 { transition-delay: .40s; }
+
+    /* Subrayado animado de enlaces */
+    .link {
+      position: relative;
+      display: inline-block;
+    }
+    .link::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -2px;
+      width: 100%; height: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform .5s cubic-bezier(.22,.61,.36,1);
+    }
+    .link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* Hover de chips */
+    .chip {
+      transition: background-color .3s ease, color .3s ease, border-color .3s ease, transform .3s ease;
+    }
+    .chip:hover {
+      background: #0A0A0A;
+      color: #FAFAF7;
+      border-color: #0A0A0A;
+      transform: translateY(-2px);
+    }
+
+    /* Cursor blob */
+    .blob {
+      position: fixed;
+      width: 360px; height: 360px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: radial-gradient(circle at center, rgba(224,78,26,0.18), rgba(224,78,26,0) 60%);
+      filter: blur(10px);
+      transform: translate(-50%, -50%);
+      transition: transform .25s ease-out;
+      z-index: 0;
+      mix-blend-mode: multiply;
+    }
+
+    /* Marquee del nombre */
+    @keyframes scrollX {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee {
+      display: flex;
+      width: max-content;
+      animation: scrollX 40s linear infinite;
+    }
+
+    /* Línea ascendente del hero */
+    @keyframes line {
+      from { transform: scaleY(0); }
+      to   { transform: scaleY(1); }
+    }
+    .hero-line {
+      transform-origin: bottom;
+      animation: line 1.4s cubic-bezier(.7,0,.3,1) .4s both;
+    }
+
+    /* Cards proyectos */
+    .project .arrow {
+      transition: transform .4s cubic-bezier(.22,.61,.36,1);
+      display: inline-block;
+    }
+    .project:hover .arrow {
+      transform: translate(6px, -6px);
+    }
+    .project > div:first-child {
+      transition: transform .6s cubic-bezier(.22,.61,.36,1);
+    }
+    .project:hover > div:first-child {
+      transform: translateY(-6px);
+    }
+
+    /* Cards experiencia */
+    .row {
+      transition: padding .4s ease, background-color .4s ease;
+    }
+    .row:hover {
+      background: #F4F2EB;
+    }
+    .row .arrow {
+      transition: transform .4s cubic-bezier(.22,.61,.36,1);
+    }
+    .row:hover .arrow {
+      transform: translateX(8px);
+    }
+
+    /* Botón principal */
+    .btn-primary {
+      transition: background-color .35s ease, color .35s ease, transform .25s ease;
+    }
+    .btn-primary:hover {
+      background: #FAFAF7;
+      color: #0A0A0A;
+      transform: translateY(-1px);
+    }
+
+    /* Selección */
+    ::selection { background: #0A0A0A; color: #FAFAF7; }
+
+    /* Scrollbar discreto */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #FAFAF7; }
+    ::-webkit-scrollbar-thumb { background: #D9D7CF; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #BFBDB4; }
+  </style>
+</head>
+
+<body class="bg-paper text-ink overflow-x-hidden">
+
+  <!-- Blob que sigue el cursor -->
+  <div class="blob hidden md:block" id="blob"></div>
+
+  <!-- Nav -->
+  <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-paper/70 border-b border-line/60">
+    <nav class="max-w-7xl mx-auto px-6 md:px-10 py-5 flex items-center justify-between text-sm">
+      <a href="#top" class="font-medium tracking-tight">Hugo Alonso<span class="text-accent">.</span></a>
+      <ul class="hidden md:flex items-center gap-8 text-mute text-[13px]">
+        <li><a href="#about" class="link hover:text-ink">Sobre mí</a></li>
+        <li><a href="#services" class="link hover:text-ink">Servicios</a></li>
+        <li><a href="#work-cases" class="link hover:text-ink">Proyectos</a></li>
+        <li><a href="#stack" class="link hover:text-ink">Stack</a></li>
+        <li><a href="#work" class="link hover:text-ink">Trayectoria</a></li>
+        <li><a href="#education" class="link hover:text-ink">Formación</a></li>
+      </ul>
+      <a href="#contact" class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-ink text-paper btn-primary border border-ink">
+        Contacto
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" class="relative min-h-screen flex flex-col justify-between pt-28 pb-10 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-center">
+
+      <!-- Eyebrow -->
+      <div class="flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-mute reveal">
+        <span class="inline-block w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+        <span>Freelance · Aceptando proyectos — 2026</span>
+      </div>
+
+      <!-- Título principal -->
+      <h1 class="reveal delay-1 mt-10 font-medium tracking-tightest leading-[0.92] text-[clamp(3.2rem,11vw,11rem)]">
+        Hugo Alonso<br/>
+        <span class="font-serif italic font-normal text-mute">Bezanilla.</span>
+      </h1>
+
+      <!-- Subtítulo -->
+      <div class="reveal delay-2 mt-12 grid md:grid-cols-12 gap-8 items-end">
+        <p class="md:col-span-7 text-xl md:text-2xl leading-snug max-w-2xl text-ink/80">
+          Perfil <span class="font-serif italic">híbrido</span> — mitad ADE, mitad Ingeniería Informática — enfocado en webs y <span class="font-serif italic">marketing digital</span> que generan negocio. Desde Donostia, para cualquier sitio.
+        </p>
+
+        <div class="md:col-span-5 md:text-right text-sm text-mute space-y-1">
+          <p>Donostia, ES · Trabajo en remoto</p>
+          <p>Proyectos freelance en todo el mundo</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pie del hero -->
+    <div class="max-w-7xl mx-auto w-full mt-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6 reveal delay-3">
+      <div class="flex items-center gap-4">
+        <div class="w-px h-16 bg-ink hero-line"></div>
+        <div class="text-sm text-mute uppercase tracking-widest">
+          <p>Scroll</p>
+          <p class="text-ink">↓</p>
+        </div>
+      </div>
+      <div class="text-sm md:text-right">
+        <p class="text-mute">Ahora</p>
+        <p class="font-medium">4º curso · DBS San Sebastián</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee del nombre -->
+  <section class="relative border-y border-line py-8 overflow-hidden bg-paper">
+    <div class="marquee whitespace-nowrap font-serif italic text-[clamp(3rem,9vw,8rem)] leading-none text-ink/10">
+      <span class="px-8">Business&nbsp;·&nbsp;Software&nbsp;·&nbsp;Data&nbsp;·&nbsp;Producto&nbsp;·&nbsp;Business&nbsp;·&nbsp;Software&nbsp;·&nbsp;Data&nbsp;·&nbsp;Producto&nbsp;·&nbsp;</span>
+      <span class="px-8">Business&nbsp;·&nbsp;Software&nbsp;·&nbsp;Data&nbsp;·&nbsp;Producto&nbsp;·&nbsp;Business&nbsp;·&nbsp;Software&nbsp;·&nbsp;Data&nbsp;·&nbsp;Producto&nbsp;·&nbsp;</span>
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section id="about" class="py-32 md:py-44 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-12 gap-12">
+
+      <div class="md:col-span-4 reveal">
+        <p class="text-xs uppercase tracking-[0.25em] text-mute mb-6">01 — Sobre mí</p>
+        <h2 class="text-3xl md:text-4xl font-medium tracking-tight leading-tight">
+          Webs que <span class="font-serif italic">venden</span>,<br/>marcas que se <span class="font-serif italic">notan</span>.
+        </h2>
+      </div>
+
+      <div class="md:col-span-7 md:col-start-6 space-y-8 text-lg md:text-xl leading-relaxed text-ink/80 reveal delay-1">
+        <p>
+          Soy Hugo. Estudio el Doble Grado en ADE + Ingeniería Informática en la Universidad de Deusto y trabajo como freelance ayudando a marcas, pymes y proyectos personales a tener una <span class="font-serif italic">presencia digital</span> que esté a la altura de lo que ofrecen.
+        </p>
+        <p>
+          Diseño y programo webs limpias, rápidas y pensadas para convertir. Y las acompaño con la parte que casi nadie quiere mirar: SEO, contenido, analítica y campañas. Cuando todo eso conversa, la web deja de ser una tarjeta de visita y empieza a ser un canal de ventas.
+        </p>
+        <p>
+          Esa es mi <span class="font-serif italic">ventaja</span>: no soy solo diseñador ni solo programador ni solo marketero. Pienso el proyecto desde el negocio, lo construyo desde la ingeniería y lo escalo desde el marketing digital. Tres lentes, un mismo proyecto.
+        </p>
+      </div>
+    </div>
+
+    <!-- Tres pilares -->
+    <div class="max-w-7xl mx-auto mt-24 md:mt-32 reveal delay-2">
+      <div class="grid md:grid-cols-3 gap-px bg-line border border-line">
+        <div class="bg-paper p-8 md:p-10">
+          <p class="font-mono text-xs text-mute">/ ADE</p>
+          <h3 class="mt-6 text-xl md:text-2xl font-medium tracking-tight">Pienso como <span class="font-serif italic">negocio</span></h3>
+          <p class="mt-3 text-ink/70 leading-relaxed">
+            Entiendo márgenes, embudos y propuesta de valor. Antes de programar, sé qué tiene que mover la aguja.
+          </p>
+        </div>
+        <div class="bg-paper p-8 md:p-10">
+          <p class="font-mono text-xs text-mute">/ Informática</p>
+          <h3 class="mt-6 text-xl md:text-2xl font-medium tracking-tight">Ejecuto como <span class="font-serif italic">ingeniero</span></h3>
+          <p class="mt-3 text-ink/70 leading-relaxed">
+            Código a medida, datos en Power BI y soluciones bien construidas. No dependo de plantillas — construyo lo que el proyecto pide.
+          </p>
+        </div>
+        <div class="bg-paper p-8 md:p-10">
+          <p class="font-mono text-xs text-mute">/ Marketing Digital</p>
+          <h3 class="mt-6 text-xl md:text-2xl font-medium tracking-tight">Genero <span class="font-serif italic">retorno</span></h3>
+          <p class="mt-3 text-ink/70 leading-relaxed">
+            SEO, contenido y analítica para que la web no se quede esperando. Llega gente — y la gente convierte.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="services" class="py-32 md:py-44 px-6 md:px-10 border-t border-line">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="grid md:grid-cols-12 gap-12 mb-20">
+        <div class="md:col-span-4 reveal">
+          <p class="text-xs uppercase tracking-[0.25em] text-mute mb-6">02 — Servicios</p>
+          <h2 class="text-3xl md:text-4xl font-medium tracking-tight leading-tight">
+            Lo que pongo<br/>sobre la <span class="font-serif italic">mesa</span>.
+          </h2>
+        </div>
+        <p class="md:col-span-6 md:col-start-6 text-lg md:text-xl leading-relaxed text-ink/70 reveal delay-1">
+          Trabajo solo, sin intermediarios, con presupuestos honestos. Puedes contratarme para una pieza concreta o para el paquete completo.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-px bg-line border border-line">
+
+        <div class="group bg-paper p-8 md:p-10 hover:bg-ink hover:text-paper transition-colors duration-500 reveal">
+          <div class="flex items-start justify-between">
+            <p class="font-mono text-xs text-mute group-hover:text-paper/60 transition-colors">/ 01</p>
+            <span class="arrow text-2xl">↗</span>
+          </div>
+          <h3 class="mt-10 text-2xl md:text-3xl font-medium tracking-tight">Diseño & Desarrollo Web</h3>
+          <p class="mt-4 text-ink/70 group-hover:text-paper/70 transition-colors leading-relaxed">
+            Landings, portfolios y webs de empresa. Diseño limpio, código a medida y carga rápida. Listas para Google, para móvil y para vender.
+          </p>
+        </div>
+
+        <div class="group bg-paper p-8 md:p-10 hover:bg-ink hover:text-paper transition-colors duration-500 reveal delay-1">
+          <div class="flex items-start justify-between">
+            <p class="font-mono text-xs text-mute group-hover:text-paper/60 transition-colors">/ 02</p>
+            <span class="arrow text-2xl">↗</span>
+          </div>
+          <h3 class="mt-10 text-2xl md:text-3xl font-medium tracking-tight">Marketing Digital</h3>
+          <p class="mt-4 text-ink/70 group-hover:text-paper/70 transition-colors leading-relaxed">
+            SEO técnico, contenido, redes y campañas. Para que la web no se quede esperando — que llegue gente y que la gente convierta.
+          </p>
+        </div>
+
+        <div class="group bg-paper p-8 md:p-10 hover:bg-ink hover:text-paper transition-colors duration-500 reveal delay-2">
+          <div class="flex items-start justify-between">
+            <p class="font-mono text-xs text-mute group-hover:text-paper/60 transition-colors">/ 03</p>
+            <span class="arrow text-2xl">↗</span>
+          </div>
+          <h3 class="mt-10 text-2xl md:text-3xl font-medium tracking-tight">Datos & Analítica</h3>
+          <p class="mt-4 text-ink/70 group-hover:text-paper/70 transition-colors leading-relaxed">
+            Dashboards en Power BI, tracking, embudos. Mido lo que pasa para decidir con números, no con intuición.
+          </p>
+        </div>
+
+        <div class="group bg-paper p-8 md:p-10 hover:bg-ink hover:text-paper transition-colors duration-500 reveal delay-3">
+          <div class="flex items-start justify-between">
+            <p class="font-mono text-xs text-mute group-hover:text-paper/60 transition-colors">/ 04</p>
+            <span class="arrow text-2xl">↗</span>
+          </div>
+          <h3 class="mt-10 text-2xl md:text-3xl font-medium tracking-tight">IA aplicada</h3>
+          <p class="mt-4 text-ink/70 group-hover:text-paper/70 transition-colors leading-relaxed">
+            Automatizaciones, prompts, integraciones. La IA bien usada ahorra horas — te ayudo a meterla en tu día a día.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section id="work-cases" class="py-32 md:py-44 px-6 md:px-10 border-t border-line">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="grid md:grid-cols-12 gap-12 mb-20">
+        <div class="md:col-span-4 reveal">
+          <p class="text-xs uppercase tracking-[0.25em] text-mute mb-6">03 — Proyectos</p>
+          <h2 class="text-3xl md:text-4xl font-medium tracking-tight leading-tight">
+            Trabajos<br/><span class="font-serif italic">seleccionados</span>.
+          </h2>
+        </div>
+        <div class="md:col-span-6 md:col-start-6 reveal delay-1">
+          <p class="text-lg md:text-xl leading-relaxed text-ink/70">
+            Casos conceptuales que estoy construyendo mientras arranco mi cartera freelance. Diseñados para mostrar enfoque, criterio y ejecución — no para inflar números.
+          </p>
+        </div>
+      </div>
+
+      <!-- Grid de proyectos -->
+      <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+
+        <!-- Proyecto 01 -->
+        <a href="./aritza/" class="project group block reveal">
+          <div class="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-[#F1ECE0] to-[#E4DCC9] border border-line">
+            <!-- Mockup tipográfico -->
+            <div class="absolute inset-0 flex flex-col justify-between p-6">
+              <div class="flex justify-between items-start text-[10px] tracking-widest uppercase text-ink/40">
+                <span>Aritza Bistró</span>
+                <span>· Menú · Reservas</span>
+              </div>
+              <div>
+                <p class="font-serif italic text-5xl md:text-6xl leading-none text-ink/85">Aritza<br/>Bistró</p>
+                <p class="mt-4 text-xs uppercase tracking-widest text-ink/40">Pintxos · Donostia · est. 2018</p>
+              </div>
+            </div>
+            <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/5 transition-colors duration-500"></div>
+          </div>
+          <div class="mt-6 flex items-start justify-between gap-4">
+            <div>
+              <p class="font-mono text-xs text-mute">01 · 2026 · Concept</p>
+              <h3 class="mt-2 text-xl md:text-2xl font-medium tracking-tight">Aritza Bistró</h3>
+              <p class="text-mute mt-1">Web de restaurante con reservas</p>
+            </div>
+            <span class="arrow text-xl mt-2">↗</span>
+          </div>
+        </a>
+
+        <!-- Proyecto 02 -->
+        <a href="./norte/" class="project group block reveal delay-1">
+          <div class="relative aspect-[4/5] overflow-hidden bg-ink text-paper border border-ink">
+            <div class="absolute inset-0 flex flex-col justify-between p-6">
+              <div class="flex justify-between items-start text-[10px] tracking-widest uppercase text-paper/50">
+                <span>NORTE/STUDIO</span>
+                <span>· Portfolio</span>
+              </div>
+              <div>
+                <p class="text-5xl md:text-6xl font-medium tracking-tightest leading-none">NORTE<br/><span class="font-serif italic font-normal text-accent">/studio</span></p>
+                <p class="mt-4 text-xs uppercase tracking-widest text-paper/50">Branding · Producto · Web</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 flex items-start justify-between gap-4">
+            <div>
+              <p class="font-mono text-xs text-mute">02 · 2026 · Concept</p>
+              <h3 class="mt-2 text-xl md:text-2xl font-medium tracking-tight">Norte Studio</h3>
+              <p class="text-mute mt-1">Portfolio para estudio creativo</p>
+            </div>
+            <span class="arrow text-xl mt-2">↗</span>
+          </div>
+        </a>
+
+        <!-- Proyecto 03 -->
+        <a href="./lurra/" class="project group block reveal delay-2">
+          <div class="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-[#FFE9DC] to-[#F8C9AC] border border-line">
+            <div class="absolute inset-0 flex flex-col justify-between p-6">
+              <div class="flex justify-between items-start text-[10px] tracking-widest uppercase text-ink/50">
+                <span>Lurra Coffee</span>
+                <span>· Shop · Suscripción</span>
+              </div>
+              <div>
+                <p class="text-5xl md:text-6xl font-medium tracking-tightest leading-none text-ink">Lurra<br/><span class="font-serif italic font-normal">coffee.</span></p>
+                <p class="mt-4 text-xs uppercase tracking-widest text-ink/50">Café de especialidad · E-commerce</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 flex items-start justify-between gap-4">
+            <div>
+              <p class="font-mono text-xs text-mute">03 · 2026 · Concept</p>
+              <h3 class="mt-2 text-xl md:text-2xl font-medium tracking-tight">Lurra Coffee</h3>
+              <p class="text-mute mt-1">E-commerce + suscripción mensual</p>
+            </div>
+            <span class="arrow text-xl mt-2">↗</span>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- CTA: la cuarta tarjeta -->
+      <a href="#contact" class="next-case group relative block mt-20 md:mt-24 bg-ink text-paper p-8 md:p-14 lg:p-20 overflow-hidden rounded-sm reveal">
+
+        <!-- Número gigante de fondo -->
+        <span aria-hidden="true" class="absolute -top-10 md:-top-16 -right-2 md:-right-4 font-mono font-medium leading-none select-none text-paper/5 text-[clamp(10rem,22vw,20rem)] transition-transform duration-700 group-hover:scale-110 group-hover:text-paper/10">04</span>
+
+        <!-- Línea decorativa -->
+        <span aria-hidden="true" class="absolute top-0 left-0 h-px w-0 bg-accent transition-all duration-700 group-hover:w-full"></span>
+
+        <div class="relative grid md:grid-cols-12 gap-10 items-end">
+          <div class="md:col-span-8">
+            <div class="flex items-center gap-3 mb-8">
+              <span class="inline-block w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+              <p class="font-mono text-xs uppercase tracking-[0.25em] text-paper/60">Próximo caso · slot abierto</p>
+            </div>
+
+            <h3 class="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tightest leading-[0.95]">
+              Tu marca,<br/>el <span class="font-serif italic text-accent">siguiente</span> caso real.
+            </h3>
+
+            <p class="mt-8 text-lg md:text-xl text-paper/75 leading-relaxed max-w-xl">
+              Arriba están mis tres conceptos. El cuarto puede ser <span class="font-serif italic">el tuyo</span> — hecho con todo. Presupuesto claro, plazos honestos, sin agencia de por medio.
+            </p>
+          </div>
+
+          <div class="md:col-span-4 flex flex-col gap-5 md:items-end">
+            <span class="inline-flex items-center gap-4 px-7 py-4 rounded-full bg-paper text-ink text-base md:text-lg font-medium transition-all duration-300 group-hover:bg-accent group-hover:text-paper group-hover:translate-y-[-2px]">
+              Hablar del proyecto
+              <span class="text-xl transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </span>
+            <p class="text-sm text-paper/50 md:text-right">Respuesta en &lt;24 h · sin compromiso</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack" class="py-32 md:py-44 px-6 md:px-10 border-t border-line">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-12 gap-12 mb-20">
+        <div class="md:col-span-4 reveal">
+          <p class="text-xs uppercase tracking-[0.25em] text-mute mb-6">04 — Stack</p>
+          <h2 class="text-3xl md:text-4xl font-medium tracking-tight leading-tight">
+            Herramientas<br/>con las que <span class="font-serif italic">construyo</span>.
+          </h2>
+        </div>
+        <p class="md:col-span-6 md:col-start-6 text-lg md:text-xl leading-relaxed text-ink/70 reveal delay-1">
+          Una caja de herramientas pensada para moverme entre el código, los datos y la operación del negocio. Sin postureo — sólo lo que uso de verdad.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-12 md:gap-16">
+
+        <div class="reveal">
+          <p class="text-sm font-medium mb-6 flex items-center gap-3"><span class="font-serif italic text-mute">i.</span> Lenguajes</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="chip border border-line text-sm rounded-full px-4 py-2 cursor-default">Python</span>
+            <span class="chip border border-line text-sm rounded-full px-4 py-2 cursor-default">Java</span>
+            <span class="chip border border-line text-sm rounded-full px-4 py-2 cursor-default">C / C++</span>
+            <span class="chip border border-line text-sm rounded-full px-4 py-2 cursor-default">SQL</span>
+            <span class="chip border border-line text-sm rounded-full px-4 py-2 cursor-default">HTML</span>
+            <span class="chip border border-line text-sm rounded-full px-4 py-2 cursor-default">RISC-V</span>
+          </div>
+        </div>
+
+        <div class="reveal delay-1">
+          <p class="text-sm font-medium mb-6 flex items-center gap-3"><span class="font-serif italic text-mute">ii.</span> Datos & BI</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="chip border border-line text-sm rounded-full px-4 py-2 cursor-default">Power BI</span>
+            <span class="chip border border-line text-sm rounded-full px-4 py-2 cursor-default">MySQL</span>
+            <span class="chip border border-line text-sm rounded-full px-4 py-2 cursor-default">SQLite</span>
+            <span class="chip border border-line text-sm rounded-full px-4 py-2 cursor-default">SAP</span>
+            <span class="chip border border-line text-sm rounded-full px-4 py-2 cursor-default">SABI</span>
+            <span class="chip border border-line text-sm rounded-full px-4 py-2 cursor-default">Contaplus</span>
+          </div>
+        </div>
+
+        <div class="reveal delay-2">
+          <p class="text-sm font-medium mb-6 flex items-center gap-3"><span class="font-serif italic text-mute">iii.</span> IA & Producto</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="chip border border-line text-sm rounded-full px-4 py-2 cursor-default">Prompt Engineering</span>
+            <span class="chip border border-line text-sm rounded-full px-4 py-2 cursor-default">GitHub</span>
+            <span class="chip border border-line text-sm rounded-full px-4 py-2 cursor-default">Visual Studio</span>
+            <span class="chip border border-line text-sm rounded-full px-4 py-2 cursor-default">Eclipse</span>
+            <span class="chip border border-line text-sm rounded-full px-4 py-2 cursor-default">Axure</span>
+            <span class="chip border border-line text-sm rounded-full px-4 py-2 cursor-default">Figma-ready</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCIA -->
+  <section id="work" class="py-32 md:py-44 px-6 md:px-10 border-t border-line">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="grid md:grid-cols-12 gap-12 mb-16">
+        <div class="md:col-span-4 reveal">
+          <p class="text-xs uppercase tracking-[0.25em] text-mute mb-6">05 — Trayectoria</p>
+          <h2 class="text-3xl md:text-4xl font-medium tracking-tight leading-tight">
+            Donde he<br/>puesto las <span class="font-serif italic">manos</span>.
+          </h2>
+        </div>
+      </div>
+
+      <!-- Lista de experiencias -->
+      <div class="divide-y divide-line border-t border-line">
+
+        <a href="#" class="row group block py-8 md:py-10 px-2 md:px-4 reveal">
+          <div class="grid md:grid-cols-12 gap-6 md:items-center">
+            <div class="md:col-span-2 text-sm text-mute font-mono">2024</div>
+            <div class="md:col-span-6">
+              <h3 class="text-2xl md:text-3xl font-medium tracking-tight">Data Analyst Intern</h3>
+              <p class="text-mute mt-1">Pasaban · Tolosa</p>
+            </div>
+            <div class="md:col-span-3 text-mute text-sm">
+              Power BI · Análisis de datos · Cross-functional
+            </div>
+            <div class="md:col-span-1 md:text-right">
+              <span class="arrow inline-block">↗</span>
+            </div>
+          </div>
+          <p class="md:ml-[16.66%] mt-4 text-ink/70 max-w-2xl">
+            Dashboards interactivos en Power BI para mejorar la toma de decisiones. Trabajé pegado a IT y a las unidades de negocio para que los datos contaran la historia correcta — y útil.
+          </p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMACIÓN -->
+  <section id="education" class="py-32 md:py-44 px-6 md:px-10 border-t border-line">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-12 gap-12">
+
+      <div class="md:col-span-4 reveal">
+        <p class="text-xs uppercase tracking-[0.25em] text-mute mb-6">06 — Formación</p>
+        <h2 class="text-3xl md:text-4xl font-medium tracking-tight leading-tight">
+          Dos disciplinas,<br/>un <span class="font-serif italic">criterio</span>.
+        </h2>
+      </div>
+
+      <div class="md:col-span-7 md:col-start-6 reveal delay-1">
+        <div class="border-l-2 border-ink pl-6 md:pl-10 space-y-2">
+          <p class="text-sm text-mute font-mono">2025 — 2026 · Actualidad</p>
+          <h3 class="text-2xl md:text-3xl font-medium tracking-tight">Universidad de Deusto</h3>
+          <p class="text-lg text-ink/80">
+            Doble Grado en Administración y Dirección de Empresas + Ingeniería Informática
+          </p>
+          <p class="text-mute">Deusto Business School (DBS) · Campus San Sebastián · 4º curso</p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-6 mt-12">
+          <div class="border-t border-line pt-4">
+            <p class="text-2xl font-medium">ES</p>
+            <p class="text-sm text-mute mt-1">Nativo</p>
+          </div>
+          <div class="border-t border-line pt-4">
+            <p class="text-2xl font-medium">EN</p>
+            <p class="text-sm text-mute mt-1">Profesional alto</p>
+          </div>
+          <div class="border-t border-line pt-4">
+            <p class="text-2xl font-medium">FR</p>
+            <p class="text-sm text-mute mt-1">Básico</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contact" class="py-32 md:py-44 px-6 md:px-10 border-t border-line bg-ink text-paper relative overflow-hidden">
+
+    <!-- Texto gigante de fondo -->
+    <div aria-hidden="true" class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.05] select-none">
+      <span class="font-serif italic text-[18vw] leading-none">hablemos</span>
+    </div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      <p class="text-xs uppercase tracking-[0.25em] text-paper/60 mb-8 reveal">07 — Contacto</p>
+
+      <h2 class="reveal delay-1 text-5xl md:text-7xl lg:text-8xl font-medium tracking-tightest leading-[0.95] max-w-5xl">
+        ¿Lanzamos<br/>tu <span class="font-serif italic text-accent">proyecto</span>?
+      </h2>
+
+      <p class="reveal delay-2 mt-10 text-lg md:text-xl text-paper/70 max-w-xl">
+        Cuéntame qué necesitas — una web, una estrategia digital o las dos. Trabajo en remoto desde Donostia, con presupuesto claro y plazos honestos.
+      </p>
+
+      <div class="reveal delay-3 mt-14 grid md:grid-cols-12 gap-10 md:gap-16">
+
+        <!-- Formulario -->
+        <form
+          id="contact-form"
+          action="https://formspree.io/f/mbdbrwra"
+          method="POST"
+          class="md:col-span-7 space-y-8"
+        >
+          <div>
+            <label for="name" class="block text-xs uppercase tracking-widest text-paper/50 mb-3">Nombre</label>
+            <input
+              type="text" id="name" name="name" required
+              placeholder="¿Cómo te llamas?"
+              class="w-full bg-transparent border-b border-paper/25 focus:border-paper outline-none py-3 text-lg md:text-xl placeholder:text-paper/30 transition-colors"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block text-xs uppercase tracking-widest text-paper/50 mb-3">Email</label>
+            <input
+              type="email" id="email" name="email" required
+              placeholder="tu@email.com"
+              class="w-full bg-transparent border-b border-paper/25 focus:border-paper outline-none py-3 text-lg md:text-xl placeholder:text-paper/30 transition-colors"
+            />
+          </div>
+
+          <div>
+            <label for="message" class="block text-xs uppercase tracking-widest text-paper/50 mb-3">Cuéntame el proyecto</label>
+            <textarea
+              id="message" name="message" required rows="4"
+              placeholder="Qué necesitas, plazos, presupuesto aproximado si lo tienes…"
+              class="w-full bg-transparent border-b border-paper/25 focus:border-paper outline-none py-3 text-lg md:text-xl placeholder:text-paper/30 resize-none transition-colors"
+            ></textarea>
+          </div>
+
+          <!-- Honeypot anti-spam (Formspree lo reconoce) -->
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" />
+
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-4">
+            <button
+              type="submit"
+              class="group inline-flex items-center gap-3 px-6 py-3 rounded-full bg-paper text-ink font-medium transition-transform duration-300 hover:translate-y-[-2px]"
+            >
+              Enviar mensaje
+              <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </button>
+            <p id="form-status" class="text-sm text-paper/50"></p>
+          </div>
+        </form>
+
+        <!-- Canales alternativos -->
+        <div class="md:col-span-5 space-y-8">
+          <a href="mailto:hugoalonsobeza@gmail.com" class="group block border-t border-paper/20 pt-6 hover:border-paper transition-colors">
+            <p class="text-xs uppercase tracking-widest text-paper/50">Email directo</p>
+            <p class="mt-2 text-lg md:text-xl font-medium flex items-center gap-2 break-all">
+              hugoalonsobeza@gmail.com
+              <span class="arrow inline-block opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+            </p>
+          </a>
+
+          <a href="https://www.linkedin.com/in/hugo-alonso-bezanilla" target="_blank" rel="noopener" class="group block border-t border-paper/20 pt-6 hover:border-paper transition-colors">
+            <p class="text-xs uppercase tracking-widest text-paper/50">LinkedIn</p>
+            <p class="mt-2 text-lg md:text-xl font-medium flex items-center gap-2">
+              /hugo-alonso-bezanilla
+              <span class="arrow inline-block opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+            </p>
+          </a>
+
+          <div class="border-t border-paper/20 pt-6">
+            <p class="text-xs uppercase tracking-widest text-paper/50">Respuesta</p>
+            <p class="mt-2 text-base md:text-lg text-paper/80 leading-relaxed">
+              Contesto en menos de 24 h. Si lo tuyo va con prisa, pon "URGENTE" en el asunto.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal delay-4 mt-20 pt-8 border-t border-paper/15 flex flex-col md:flex-row md:items-end md:justify-between gap-6 text-sm text-paper/50">
+        <div>
+          <p>Donostia · España · Remoto</p>
+          <p>+34 601 213 701</p>
+        </div>
+        <div class="md:text-right">
+          <p>© 2026 Hugo Alonso Bezanilla</p>
+          <p>Hecho con cuidado, café y un poco de Tailwind.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script>
+    // Revelado al hacer scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Disparar primer reveal en hero al cargar
+    window.addEventListener('load', () => {
+      document.querySelectorAll('#top .reveal').forEach((el, i) => {
+        setTimeout(() => el.classList.add('in'), 60 * i);
+      });
+    });
+
+    // Formulario Formspree con feedback inline
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        status.textContent = 'Enviando…';
+        status.style.color = '';
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            form.reset();
+            status.textContent = '¡Recibido! Te contesto en menos de 24 h.';
+            status.style.color = '#9BD9A3';
+          } else {
+            const json = await res.json().catch(() => ({}));
+            status.textContent = json.errors?.[0]?.message || 'Algo no ha ido bien. Prueba con email directo.';
+            status.style.color = '#FFB199';
+          }
+        } catch {
+          status.textContent = 'Sin conexión. Prueba con email directo.';
+          status.style.color = '#FFB199';
+        }
+      });
+    }
+
+    // Blob siguiendo el cursor
+    const blob = document.getElementById('blob');
+    if (blob) {
+      let tx = window.innerWidth / 2, ty = window.innerHeight / 2;
+      let cx = tx, cy = ty;
+      window.addEventListener('mousemove', (e) => {
+        tx = e.clientX;
+        ty = e.clientY;
+      });
+      function loop() {
+        cx += (tx - cx) * 0.08;
+        cy += (ty - cy) * 0.08;
+        blob.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
+        requestAnimationFrame(loop);
+      }
+      loop();
+    }
+  </script>
+
+</body>
+</html>

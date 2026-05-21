@@ -27,3 +27,7 @@ package-lock.json
 # Deploy
 .vercel
 .netlify
+
+# Material privado de marketing (no publicar)
+marketing-templates.md
+_privado/
